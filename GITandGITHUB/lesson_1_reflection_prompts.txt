@@ -1,0 +1,28 @@
+How did viewing a diff between two versions of a file help you see the bug that was introduced?
+    Reduced the number of lines of code needed to search ... saved significant time and effort when searching for errors introduced between commits.
+
+How could having easy access to the entire history of a file make you a more efficient programmer in the long term?
+    Less time wasted if current development is dropped and project wants to re-start from an earlier version.
+    Also if a bug is introduced during development it is faster to find when\where bug occurred\is.
+
+What do you think are the pros and cons of manually choosing when to create a commit, like you do in Git, or having versions automatically saved, like Google docs does?
+    Manual pros -- save in conceptual/time blocks at moments where a single functionality has been provided or when it would become too expensive to have to repeat in case of a loss of the work.
+           cons -- subject to the foibles of human error ... must develop a strong habit of committing at appropriate times
+    Auto   pros -- work is saved on a regular basis preventing significant work/time from being lost
+           cons -- does not save with conceptual chunks in mind so that multiple saves may not build because of commits in middle of work
+           
+Why do you think some version control systems, like Git, allow saving multiple files in one commit, while others, like Google Docs, treat each file separately?
+    Depending on user ... if you have files that affect other files (like .h in c) or files whose change may effect others (like a superclass in java)
+		  then having multiple files in one commit is not only useful but practically necessary. But in those instances where the files you are working
+			on do not have a direct impact on other files in the project (like a bunch of recipes) then not saving multiple files in a commit is a more efficient use of resources.
+
+How can you use the commands git log and git diff to view the history of files?
+    git log --- will show the commits - most recent first - along with commit comments and the commit ID
+		git diff --- will show the changes between two files assuming first ID is oldest (previous) and second is next (more recent) it will show what lines deleted (with a -) and which added with a plus.
+
+How might using version control make you more confident to make changes that could break something?
+    Because we can return to earlier commits we can be less worried about breaking something --- there is a larger comfort zone for exploration/experimentation
+
+Now that you have your workspace set up, what do you want to try using Git for?
+    Immediately; Udacities The Machine learning course.
+    NOTE: After working Lesson three with GITHub ... I have a large number of projects that will be moved to GIT ... these include several software projects and my board game design efforts and ... etc.

@@ -1,0 +1,114 @@
+git init
+  creates a .git directory as a subdirectory of current directory
+
+git init [ProjectName]
+  creates a directory named [ProjectName] as a subdirectory of current directory and then creates a .git directory as a subdirectory of the directory [ProjectName]
+ 
+git clone [url]
+  downloads a repository (in total) including entire version history
+  Example: git clone https://github.com/LinnTaylor/reflections.git
+    will create the working directory for the project (and associated subdirectories and files) in the current directory
+    
+git add [FileName]
+  creates a copy of FileName and places it in staging area
+  Example: Assuming I'm in the working directory of the repository
+    git add Lesson_1_refelections.txt
+      will add a copy of Lesson_1_reflections.txt to the repository's staging area
+
+git commit
+  creates a commit containing all changes to repository as shown in staging area, this can include any files that have been added since last commit and file deletions, etc. (see more about this in later commands)
+  this will open an editor that you can add a line or two to as comments that will be shown to help identify what this commit adds to project
+  NOTE: if you leave the comment empty the commit acts as though you cancelled it and does not alter repository
+
+git commit -m "[CommentText]"
+  as with commit but does not open editor and instead uses [CommentText] as comment for commit
+  ADDITIONAL INFO:
+    It is useful to have a protocol for the standard format of a commit comment (this is actually true for all comments in any project) One such standard is as follows:
+    Commit Comments have 3 parts: Type:Body:Footer
+      Type:Subject
+        Feature: added a new feature
+        Fix: fixed a bug/problem
+        Docs: changed documentation
+        Style: reformatted content
+        Refactor: refactored code/information
+        Test: added a test (does not alter production data)
+        Chore: updated build tasks/configuration files (again, does not alter production data)
+      Subject:
+        Should be less than 50 characters with 1st letter capitalized and no period at end. The voice should be imperative/declarative
+        Example: Add coins for ships to acquire
+          NOT: Added coins for ships to acquire
+      Body:
+        Multiline with 1 line skipped between Type and Body. Lines should be less that 72 characters per line
+        The body should descibe what has been done and why it was done but should not contain information on how it was done
+      Footer:
+        Optional and if included should contain information pertinent to issue/bug tracking often specifying driving reason that this was done
+          as in number of bug report and possible indication of response to report needed
+
+git log
+  lists all commits for the repository
+  
+git log --graph --oneline
+  lists all commits (one line per commit) with indentation and ascii graphics to show branches/merges
+  
+git log --follow [FileName]
+  shows revision history for a file (including renames)
+  
+git status
+  shows information on new files or information of files in staging area useful to ensure you are ready to commit
+  
+git diff
+  shows differences in files in working area with those in staging area
+  
+git diff --staged
+  shows differences between staging area and repository
+  
+git diff [CommitID_1] [CommitID_2]
+  shows difference between commit with id CommitID_1 and commit with id CommitID_2
+  Notes: lines preceded by + are files added to CommitID_2 and lines preceded with - are files deleted from CommitID_1
+
+git checkout [CommitID]
+  makes working directory contain files that are in the state that they were in when the commit with id CommitID was committed.
+  Aside: could I phrase that with any more uses of the word commit :)
+  
+git reset --hard
+  kills the working directory and staging area
+  WARN: if you have any changes that have not been committed then this will lose the permanently with no undo (you could redo :) )
+
+git branch
+  shows all branches in current repository
+  
+git branch [BranchName]
+  creates a branch at point of current commit most recently checked out
+  
+git checkout [BranchName]
+  makes working directory contain files that are in the state that they were in when the commit at the branch called [BranchName] was committed
+  
+git branch -d [BranchName]
+  removes the name [BranchName] from repository (Not the associated commit just the name)
+
+git merge [BranchName_1] [BranchName_2]
+  will combine the two branches such that [BranchName_1] is new top and the commits in each branch are interleaved based on timestamp
+  
+git remote
+  show all current remotes
+
+git remote add origin [URL]
+  specifies remote for this (typically if you only have one remote this is called 'origin' (but could be any name)) the name origin can/will be used to reference this remote repository
+  Example:
+    git remote add origin https://github.com/LinnTaylor/reflections.git
+    
+git remote -v
+  similar to git remote but outputs more information, specifically the URL that data comes from (fetch/pull) and goes to (push)
+
+git diff [BranchName_1] [BranchName_2]
+  shows differences between two branches specified by [BranchName_1] and [BranchName_2]
+  
+git show [CommitId]
+  shows metadata and content changes of commit id'd with [CommitID]
+
+git pull
+  downloads from remote changes and updates local repository
+  
+git push [RemoteName] [BranchName]
+  uploads to remote the changes/updates of the local branch called [BranchName]
+  ('origin' is  a common default [RemoteName])

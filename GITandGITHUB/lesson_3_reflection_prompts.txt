@@ -13,10 +13,14 @@ Describe the differences between forks, clones, and branches.  When would you us
 		Fork: GITHub only, same as clone but enforces ownership of repository being cloned, useful for licensing purposes.
 
 What is the benefit of having a copy of the last known state of the remote stored locally?
-    Fill in your answer here
+    You will be working with the latest changes ... which could/should reduce conflicts on merging your work with others.
 
 How would you collaborate without using Git or GitHub?  What would be easier, and what would be harder?
-    Fill in your answer here
+    1 Create a separate copy of project that includes your changes
+		2 Submit to others who may need to review your changes and notify them (via email or meet)
+		3 Wait for approval or notification of problems
+		4 merge you changes (manually) into production data
+		Frankly Git/GitHub simplifies the process greatly ... it does require ritualistic behaviour of all participants ... which can be difficult to enforce
 
 When would you want to make changes in a separate branch rather than directly in master?  What benefits does each approach have?
-    Fill in your answer here
+    If you wanted members of project to review/approve your changes prior to merging them into master/production path.

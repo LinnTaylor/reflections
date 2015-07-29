@@ -106,9 +106,14 @@ git diff [BranchName_1] [BranchName_2]
 git show [CommitId]
   shows metadata and content changes of commit id'd with [CommitID]
 
-git pull
-  downloads from remote changes and updates local repository
+git pull [RemoteName] [BranchName]
+  downloads from remote called [RemoteName] changes to the branch [BranchName] and updates local repository
   
 git push [RemoteName] [BranchName]
   uploads to remote the changes/updates of the local branch called [BranchName]
   ('origin' is  a common default [RemoteName])
+	
+git pull origin master
+	the next two lines are equivalent to the line above
+		git fetch origin
+		git merge master origin/master

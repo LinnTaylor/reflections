@@ -33,3 +33,24 @@ Normalizing
 		P(Pos) = P(C,Pos) + P(~C,Pos) = 0.108
 		P(C|Pos) = P(C,Pos) / P(Pos) = 0.009/0.108 = 0.083333...
 		P(~C|Pos) = P(~C,Pos) / P(Pos) = 0.099/0.108 = 0.916666...
+		Note: P(C|Pos) + P(~C|Pos) = 1.0 (always)
+		
+P(C) prior
+P(Pos|C) sensitivity
+P(~Pos|~C) specificity
+
+Another Example
+Prior: P(Chris) = 0.5 --> P(Sarah) = 0.5 (one or the other with 50% chance)
+Chris writes with words love, deal, life with frequency (respectively) (0.10,0.80,0.10)
+Sarah writes with words love, deal, life with frequency (respectively) (0.50,0.20,0.30)
+get message "life deal"
+P(Chris|Message)?
+P(Sarah|Message)?
+ P("life"|Chris)*P("deal"|Chris)*P(Chris) = 0.80*0.10*0.50 = 0.04
+ P("life"|Sarah)*P("deal"|Sarah)*P(Sarah) = 0.20*0.30*0.50 = 0.03
+ P("life deal") = 0.07
+P(Chris|Message) = 0.04/0.07 = 0.57142857142857142857142857142857
+P(Sarah|Message) = 0.03/0.07 = 0.42857142857142857142857142857143
+
+It's called naive bayes because it ignores assumptions. E.G. in the above example we ignore the order of the words ... we assume that word order is not meaningful
+Naive Bayes is easy to implement and is relatively quick to calculate and is efficient

@@ -1,0 +1,32 @@
+SVM - Support Vector Machine
+
+Works by separating by a line/plane/hyperplane that maximizes the Margin
+The Margin is the maxium distance between the data set that needs to be separated
+In 2D terms it is the largest distance from the closest points to the separating line/plane/hyperplane
+Distances are calculated by measuring the distance to closest points via a line that is perpendicular to the separating line
+  (I'm using line in the 2D sense to aid visualization .. the idea extends to higher dimensions)
+  
+How do SVMs handle outliers (or for that matter conflicts in that no line can separate data correctly)?
+  (In some manner ignores outliers ... I'm suspecting that the distances calculated are absolute values so that you still find the largest
+    distances between the closest items ... this would, in some sense) ignore outliers (or at least mitigate their effect on the accuracy of the
+    separating.)
+
+AhHa! The idea is to make the data linearly separable so if you cannot do that with the data as it is create additional features so that it is.
+IE. transform the data such that it can be linearly separated. In one example the data was arranged such that a circle of rejects were in the middle
+  of a bunch of accepts so the additional item was the sum of the squares of the data ... this moved it into three space where the two could be separated by a plane
+  then when the plane/data wss projected back into 2 space it had correctly created a circular zone that defined the reject space.
+  Kind of cool if you ask me.
+
+SVM (at least the SVC version in sci-kit) had a number of parameters, kernel -- the transformation vector (so to speak), gamma -- Kernel coefficient
+  for ‘rbf’, ‘poly’ and ‘sigmoid’. If gamma is 0.0 then 1/n_features will be used instead (I only half understand this right now -- definition ripped
+  from documentation) and C which was a setting for the 'smoothness' of the separation ... the higher it is the more points it classifies correctly
+  (NOTE: Watch for over-fitting the data here) C should be (and is) default of 1.0 ... you should decrease this if data is very noisy ... and (if
+  data is very reliable) could increase it to increase the number of points classified correctly.
+  
+Disadvantages --- not so good with large data-sets or with data that is very noisy -- or in the case where the number of dimensions is greater than
+  the number of features in data
+
+Advantages --- good in high dimensioned spaces, memory efficient, very versatile via kernels
+
+  
+  

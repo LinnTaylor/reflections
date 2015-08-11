@@ -1,0 +1,117 @@
+Functions and Limits
+
+What is a function? Does not get directly answered ... instead we are shown what a function does:
+Aside: What is a number? (Like '4')
+        It's a name used to count any collection that can show a one to one correspondence with the set {a,gg,d,jjj} (as an example)
+        
+A function assigns to each number in its domain another number.
+E.G. f(x) = y where x is a number in f's domain.
+NOTE: This is read 'f of x is y'
+Another definition -- a functions expresses a relationship between dependent quantities. (Great Courses)
+
+If we say f(x) = x^2 then we are saying that the function f squares f's argument. E.G. F(3) = 3^2 = 9
+
+The domain is all numbers for which the rule (function) makes sense ... this can be narrowed for some purposes as in
+  limiting the domain to all positive integers greater that 100 (for example)
+ 
+Example: f(x) = 1/x ... here the domain cannot include the value zero (0)
+
+NOTE: Given a function f, it is true that if f(a) = b and f(a) = c then b = c
+        if that is not true then f is not by definition a function
+
+
+Calculus deals with Change and motion (this is quote from 'Great Courses: 'Change in Motion Calculus` part one'
+ Zeno: Paradoxes in Motion (a paradox presents the same situation from two different points of view which lead to opposite conclusions
+   An archer fires an arrow and the arrow moves through the air towards its destination yet at any given instant it is in one location
+   so how can it be moving?
+   Yet is is also true that the arrow does travel a distance proportional to the time it is in the air. The arrow at some infinitely small time does travel
+   through an infinitely small distance.
+ 
+A mathematical model is an abstract relationship that corresponds to reality in an effective way (Great Courses)
+
+A Graph describes or viualizes relationships between varying quantities (Great Courses)
+
+Two fundamental Ideas of Calculus (Great Courses)
+  1) Derivative -- a way of measuring instantaneous change
+  2) Integral -- the accumulation of small pieces that add up to an object
+  
+  A derivitive is a measure of change
+    This time the argument is phrased as a driver defending himself after driving through a stop sign.
+    The driver insists that there was an instant when he was at the stop sign and at that instant he was not moving.
+    The officer presents information showing that the driver was always moving by calculating the drivers average speed using
+      smaller and smaller distances between the stop sign and the other locations the car passed through.
+    First example has a constant distance traveled over all time units ... IE the car is traveling at 1 mpm (mile per minute) throughout its path.
+    The instantaneous speed is the speed that is approached as you get closer and closer to the instant under investigation
+    The above example is showing that the position at time t is t miles
+    But what about position at time t is t^2 miles
+    so if t is 1.1 the average is 1.21 miles per minute (P(t) = t^2
+    and if t is 2 then the average is 4 miles per minute
+    At t = 1.01 average is 2.01 miles per minute
+    at t - 1,001 average is 2.001 miles per minute
+    Note that as t approaches 0 the speed approaches 2 miles per minute
+      (speed from 1 to 2 is 3 miles per minute)
+So taking the average speeds and observing what it converges to as we take smaller and smaller distances is the derivitive
+ at .7 inst. speed is 1.4 milies per minute
+ at 1 """"""""""""""""2"""""""""
+ at 1.4 """"""""""""2.8""""""""
+ at 2 """""""""""""4""""""""""
+ at 3 """"""""""""""6""""""""
+generalizing: given P(t) = t^2 the instantaneous speed at time t = 2t
+
+The Derivative ... the position at t + delta(t) - position at t divided by delta(t)
+(P(t + dt) - P(t))/dt
+
+Next idea.
+  a car comes up and kidnaps you and blindfolds you and takes you away (in a straight line)
+  you can see the speedometer so you (with your camera) take a video of the spedometer
+  after some time you are thrown out of car (camera had a time stamp)
+  Where are you?
+  We solve this examining the video and analyze in terms of the second idea of calculus
+  The simplest would be if the speedometer was constant (eg always 60 miles per hour)
+  if you had traveled for an hour you would know your position is 60 miles down the road
+  what if it went steady 1 mile per minute for 30 minutes and then instantly went 2 miles for the remaining 30 minutes
+  so you went 1*30 + 2*30 or 90 miles per minute
+  Suppose you went
+  1 mpm (mile per minute) for 0 to 10 minutes
+  2 for 10 to 20
+  3 for 20 to 30
+  4 for 30 to 40
+  5 for 40 to 50
+  6 for 50 to 60
+  Sum distances traveled during each 10 minutes 10 + 20 + 30 + 40 + 50 + 60 = 210
+  Now ... what about a varying speed and time
+  Suppose camera had a frame rate at 1 per minute
+  Sum speedometer readings (60 of them) to get an approximation
+  Now what id it was .1 minute per frame (sum for approximation)
+  Suppose velocity at time t is going 2*t miles per minute
+  Then we sum (suppose 3 minutes ... shorter calculation when summing)
+  note: given example
+   0 mpm for 0 to .50
+   1 for .5 to 1
+   2 for 1 to 1.5
+   3 for 1.5 to 2
+   4 for 2 to 2.5
+   5 for 2.5 to 3
+  if we use smallest time the approximation will be smaller that real
+  if we use larger then the approximation will be larger
+  in this case smaller is 7.5 and larger is 10.5
+  Suppose table is .1 between intervals instead of .5 
+  smaller is 8.7 and larger is 9.3 (getting closer to actual distace travelled (boxing it in))
+  Integral v(t) = 2t --> sum(v(ndt)*dt)for n= 0 to total time/dt
+  in above example dist = 9 miles
+  Integral -- integrating a lot of little pieces
+  the resulting table will have these entries
+  0 to .5 goes .25 miles
+  0 to 1 gets 1
+  0 to 1.5 gets 2.25
+  0 to 2 gets 4
+  0 to 3 gets 9
+  pattern is distance traveled from t = 0 to t when velocity is 2t is t^2
+  P(t) = t^2
+  Integral is second idea of calculus
+    summation of parts
+
+Closely related (but not quite inverses0
+
+Next up Fundamental Theorem of Calculus connects the process of the integral with the process of the derivitive
+Lesson Four (Great Courses) Taking a break from Coursera to review material in great courses lectures (to get rid of disks))

@@ -111,7 +111,131 @@ Next idea.
   Integral is second idea of calculus
     summation of parts
 
-Closely related (but not quite inverses0
+Closely related (but not quite inverses?)
 
 Next up Fundamental Theorem of Calculus connects the process of the integral with the process of the derivitive
 Lesson Four (Great Courses) Taking a break from Coursera to review material in great courses lectures (to get rid of disks))
+
+Previous shown that the derivitive maps from position(distance) to speed and the integral maps from speed to position(distance) (in the moving car example)
+View moving car from two view the static view that states we started at point x and we ended at point y subtract x from y to get distance travelled
+The dynamic view wants to take a look at intervals along the way and sum up the distances covered at each intervals
+Given the position function P(t) = t^2 the velocity function will be V(t) = 2t
+
+Suppose V(t) = 3t^2 then P(t) = t^3
+
+Derivitive is the tangent to the given line of a curve (it is the slope of the tangent to that curve)
+
+The mean value theorem for derivitives -- there is some moment in time your instantaneous speed will be exactly equal to the avergae time.
+
+d/dt(t^2) = 2t (Lebniz's notation for the derivitive ...)
+or
+P(t) = t^2
+P'(t) = 2t
+
+Derivitives measure the rate of change of one quantity with respect to another quantity
+
+The square (as an example) area = x^2
+we can ask the question how fast does the area grow as we increase the side of a square
+((x+dx)^2 - x^2)/dx is the formula representing this question.
+Notice similarity between (P(t+dt) - P(t))/dt
+
+The circle area = pi*r^2
+(A(r+dr) - A(r))/dr
+In fact A'(r) = (d/dr)(pi * r^2) = 2*pi*r
+
+If we put a belt on the earth so that is fit tight (matched the circumference) and then made the belt six feet longer how much space would
+  there be between the earth and the belt.
+
+What is the change in the radius when we change the circumference
+C(r) = 2*pi*r
+C'(r) = 2*pi
+
+Easy derivitives:
+P(t) = C*t (C is a constant)
+P'(t) = C
+
+P(t) = t^2
+((t + dt)^2 - t^2)/dt = (t^2 + 2*t*dt + dt^2 = t^2)/dt = ((2*t*dt) + dt*2)/dt = 2t + dt so (d/dt)(t^2) = 2t
+
+extending and generalizing f(x) = C*x^2 --> f'(x) = 2*C*x
+
+and still further
+f(x) = C*x^N --> f'(x) = f'(x) = N*C*x^(N-1)
+
+and as sums
+F(x) = 5x^3 + 2x + 3 --> f'(x) = 15x^2 + 2
+
+Using sine function
+Note: given a unit circle (with radius 1), draw two radii, measure the angle between them and call that angle theta ... then draw a line from the intersection of one radius and the cicumference of the circle
+  to the other radius such that the angle formed at that intersection is 90 degrees then the length of that line from one radius to the other is sine theta
+  Cos theta is the length of the line along the radius to the intersection of sine theta and the radius it is perpendicular to.
+  
+What is the change of sin theta when we change theta.
+
+(sin (theta + delta theta) - sin(theta)) / delta theta =  cos theta
+
+(d/d theta)(sin theta) = cos theta
+(d/d theta) (cos theta) = -sin theta
+
+Finally ... starting to say something concrete about the Integral
+Finding the Integral of a curve is also finding the area under a curve.
+
+Notation Intergral from 0 to 3 2t dt (delta t) ... Elongated letter S with subscript start of range and superscript end of range
+the 2t dt is (the 2t is the rectangle formula for a problem (could be something else) the dt (delta t) represents a tiny width (dimension of time)
+
+The fundamental Theorem of Calculus: Integral from a to b(F'(x) dx) = F(b) - F(a) try this, since no elongated S with sub/super script available to me in NotePad++
+   Integrate(a, b, F'(x) dx) = F(b) - F(a)
+   
+if (G(x) = F'(x)) then G(x) is the derivitive of F(x) and F(x) is an antiderivitive of G(x) (Note: the antiderivitive is not unique)
+  Example: P(x) = t^2 and F(x) = t^2 + 100 the P'(x) = F'(x) even though P(x) =/= F(x)
+  
+Another aside: Buffon's Needle ... suppose we have multiple parallel lines each n units apart from its neighbors 
+and a stick that is n units long. Suppose also that we throw this stick (or drop) on these lines and record the number
+ of times that we do the throws as well as the number of times the stick crosses on of the lines ... 
+ 
+Integral(0,pi, sin(theta) delta theta) = -cos(pi) - (-cos(0)) = -(-1) - (-(1)) = 2
+
+Finally talking about limit ... the above is a lot of examples without really explaining the derivations (it seems to me ... I am not fond of this lecturerer 
+he puts me to sleep in about 15 minutes and he feels condescending.
+
+A discusion of Zeno's achiles and the tortoise paradox ... suppose that achilles can run 10 times faster than the tortoise and so we give the tortoise a 1
+unit head start ... so as achiles runs to that location the tortoise has moved to location 1.1 so achilles runs to 1.1 and the tortoise has moved to 1.11 and
+so on showing that achilles can never catch the tortoise.
+
+a limit is ...
+limit as x approaches 2 of the function ((x^2)-4)/(x-2) is the value that the function approaches (converges on) as x gets closer and closer to 2
+
+Definition of the limit:
+limit as x approaches c of f(x) = l
+lim(x,c,f(x)) = l
+For All epsilon greater than zero, There exists a lower case delta greater than zero such that if
+  the absolute value of (x - c) < lower case delta, then the absolute value of (f(x) - l) < epsilon
+so now (finally)
+d/dx(x^2) = lim(dx,0,(((x+dx)^2)-(x^2))/(dx))
+
+Dedekind Cuts ... if you can find a value that separates two sections of the number line (such that the value is not a number)
+   call that value a number so that the separation does not exist ... I think I need to think about this and give a better definition that
+   is clearer.
+
+Solving summations of infinite series:
+
+Example: when does the minute hand and the hour hand line up? (the example as shown had the clock reading 4 o'clock.
+given that the hour hand moves at 1/12 the speed of the minute hand.
+
+Then (reminding us of achelles and the tortoise) when the minute hand moves to where the hour hand is that would be 20 minutes
+  the hour hand has moved 20/12 minutes ... and (the minute hand is trying to catch the hour hand) when the minute hand has moved 20/12 more
+  the hour hand has moved 20/(12^2) ... and as the minute hand moves to catch up again
+  the hour hand has moved 20/(12^3) ...
+Can be phrased as:
+   M = 20 + 20/12 + 20/(12^2) + 20/(12^3)+ 20/(12^4) ...
+to solve:
+divide both sides by 12:
+M/12 =      20/12 + 20/(12^2) + 20/(12^3)+ 20/(12^4) ...
+(note how it essentially shifts the values (in a visual sense) one space to the right)
+the subtract the new expression from the original
+M - M/12 = 20 (all the fractions cancel)
+11/12 M = 20
+M = 20&9/11
+
+This also shows how repeating decimal expansions can be stated as Rational numbers as well.
+

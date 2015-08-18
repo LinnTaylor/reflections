@@ -2,7 +2,8 @@ Functions and Limits
 
 What is a function? Does not get directly answered ... instead we are shown what a function does:
 Aside: What is a number? (Like '4')
-        It's a name used to count any collection that can show a one to one correspondence with the set {a,gg,d,jjj} (as an example)
+        It's a name used to count any collection that can show a one to one correspondence with any set that also has that name representing its cardinality 
+        (Like 'four' (4) {a,gg,d,jjj} (as an example)
         
 A function assigns to each number in its domain another number.
 E.G. f(x) = y where x is a number in f's domain.
@@ -12,136 +13,80 @@ Another definition -- a functions expresses a relationship between dependent qua
 If we say f(x) = x^2 then we are saying that the function f squares f's argument. E.G. F(3) = 3^2 = 9
 
 The domain is all numbers for which the rule (function) makes sense ... this can be narrowed for some purposes as in
-  limiting the domain to all positive integers greater that 100 (for example)
+  limiting the domain to all positive integers greater than 100 (for example)
  
 Example: f(x) = 1/x ... here the domain cannot include the value zero (0)
 
 NOTE: Given a function f, it is true that if f(a) = b and f(a) = c then b = c
         if that is not true then f is not by definition a function
 
-
-Calculus deals with Change and motion (this is quote from 'Great Courses: 'Change in Motion Calculus` part one'
- Zeno: Paradoxes in Motion (a paradox presents the same situation from two different points of view which lead to opposite conclusions
-   An archer fires an arrow and the arrow moves through the air towards its destination yet at any given instant it is in one location
-   so how can it be moving?
-   Yet is is also true that the arrow does travel a distance proportional to the time it is in the air. The arrow at some infinitely small time does travel
-   through an infinitely small distance.
- 
-A mathematical model is an abstract relationship that corresponds to reality in an effective way (Great Courses)
-
-A Graph describes or viualizes relationships between varying quantities (Great Courses)
-
-Two fundamental Ideas of Calculus (Great Courses)
-  1) Derivative -- a way of measuring instantaneous change
-  2) Integral -- the accumulation of small pieces that add up to an object
+I took a week to watch the 'Great Courses: Change in Motion: Calculus Part 1 (& Part 2)' The following notes come from that course.
+  I cannot recommend this course for any trying to get a serious discussion of calculus with any clarity or rigor ... there were many
+  digressions that were only loosely connected ... the speaker 'uh'ed repeated words and phrases and often stopped mid sentence and 
+  reversed or changed the direction of thought. While there were some interesting digressions, I don't feel this would be a useful
+  expenditure of time ... unless of course you're bored.
   
-  A derivitive is a measure of change
-    This time the argument is phrased as a driver defending himself after driving through a stop sign.
-    The driver insists that there was an instant when he was at the stop sign and at that instant he was not moving.
-    The officer presents information showing that the driver was always moving by calculating the drivers average speed using
-      smaller and smaller distances between the stop sign and the other locations the car passed through.
-    First example has a constant distance traveled over all time units ... IE the car is traveling at 1 mpm (mile per minute) throughout its path.
-    The instantaneous speed is the speed that is approached as you get closer and closer to the instant under investigation
-    The above example is showing that the position at time t is t miles
-    But what about position at time t is t^2 miles
-    so if t is 1.1 the average is 1.21 miles per minute (P(t) = t^2
-    and if t is 2 then the average is 4 miles per minute
-    At t = 1.01 average is 2.01 miles per minute
-    at t - 1,001 average is 2.001 miles per minute
-    Note that as t approaches 0 the speed approaches 2 miles per minute
-      (speed from 1 to 2 is 3 miles per minute)
-So taking the average speeds and observing what it converges to as we take smaller and smaller distances is the derivitive
- at .7 inst. speed is 1.4 milies per minute
- at 1 """"""""""""""""2"""""""""
- at 1.4 """"""""""""2.8""""""""
- at 2 """""""""""""4""""""""""
- at 3 """"""""""""""6""""""""
-generalizing: given P(t) = t^2 the instantaneous speed at time t = 2t
+Paradox: a situation that can be observed from two different points of view which lead to opposite conclusions about that situation
+Example: Zeno's Paradox in Motion 
+   An archer fires an arrow and the arrow moves through the air towards its destination and then strikes it;s target.
+   Yet at any given instant it is can only be in place at a time so that if we observe it at exactly one instant it is clearly not moving.
+   Yet is is also true that the arrow does travel a distance proportional to the time it is in the air.
+    The arrow at some infinitely small time does travel through an infinitely small distance.
+ 
+A mathematical model is an abstract relationship that corresponds to reality in an effective way. (If the model is a correct model)
 
-The Derivative ... the position at t + delta(t) - position at t divided by delta(t)
-(P(t + dt) - P(t))/dt
+A Graph describes or viualizes relationships between varying quantities. (Think cartesian graph)
 
-Next idea.
-  a car comes up and kidnaps you and blindfolds you and takes you away (in a straight line)
-  you can see the speedometer so you (with your camera) take a video of the spedometer
-  after some time you are thrown out of car (camera had a time stamp)
-  Where are you?
-  We solve this examining the video and analyze in terms of the second idea of calculus
-  The simplest would be if the speedometer was constant (eg always 60 miles per hour)
-  if you had traveled for an hour you would know your position is 60 miles down the road
-  what if it went steady 1 mile per minute for 30 minutes and then instantly went 2 miles for the remaining 30 minutes
-  so you went 1*30 + 2*30 or 90 miles per minute
-  Suppose you went
-  1 mpm (mile per minute) for 0 to 10 minutes
-  2 for 10 to 20
-  3 for 20 to 30
-  4 for 30 to 40
-  5 for 40 to 50
-  6 for 50 to 60
-  Sum distances traveled during each 10 minutes 10 + 20 + 30 + 40 + 50 + 60 = 210
-  Now ... what about a varying speed and time
-  Suppose camera had a frame rate at 1 per minute
-  Sum speedometer readings (60 of them) to get an approximation
-  Now what id it was .1 minute per frame (sum for approximation)
-  Suppose velocity at time t is going 2*t miles per minute
-  Then we sum (suppose 3 minutes ... shorter calculation when summing)
-  note: given example
-   0 mpm for 0 to .50
-   1 for .5 to 1
-   2 for 1 to 1.5
-   3 for 1.5 to 2
-   4 for 2 to 2.5
-   5 for 2.5 to 3
-  if we use smallest time the approximation will be smaller that real
-  if we use larger then the approximation will be larger
-  in this case smaller is 7.5 and larger is 10.5
-  Suppose table is .1 between intervals instead of .5 
-  smaller is 8.7 and larger is 9.3 (getting closer to actual distace travelled (boxing it in))
-  Integral v(t) = 2t --> sum(v(ndt)*dt)for n= 0 to total time/dt
-  in above example dist = 9 miles
-  Integral -- integrating a lot of little pieces
-  the resulting table will have these entries
-  0 to .5 goes .25 miles
-  0 to 1 gets 1
-  0 to 1.5 gets 2.25
-  0 to 2 gets 4
-  0 to 3 gets 9
-  pattern is distance traveled from t = 0 to t when velocity is 2t is t^2
-  P(t) = t^2
-  Integral is second idea of calculus
-    summation of parts
+Two fundamental Ideas of Calculus (NOTE: both rely on the concept of the limit (discussed after these two.)
+  1) Derivative -- a way of measuring instantaneous change
+    Deals with the rate at which something changes in order to determine the rate of change occuring at some instance of change.
+    A common example is studying an object moving in space (at first usually a straight line) with a non constant speed.
+    Two examples:
+       Object is moving at a constant rate of change say 1 mile per minute (mpm). Let's say that p(t) is the position at time t
+       Then p(t) = t. IE. if we observe a ball moving for 5 minutes then it has traveled 5 miles during that 5 minutes.
+       We can say that the ball has a speed of (p(t) - p(0))/t; which in this case means ball is averageing 5 mpm (5 mile - 0 mile)/5 minute = 1 mpm
+       Object is moving at a rate that changes as time increase.
+         Say: p(t) = t^2
+       If we examine the object we can calculate the average speed as before, but what if we want to know how fast the ball is moving at a specific
+       time? The idea is to look at the object's average speed between the moment we are interested in and some very small moment later. Then the
+       average speed is (p(t+delta{t}) - p(t))/delta{t}) (NOTE: delta{t} is nomenclature and not some kind of function call and represents some infinitesmilly
+       small value of 't' (in this case)
+       Doing the algebra this becomes (t+delta{t})^2 - t^2)/delta{t} (NOTE: delta{t} is not zero!)
+       This becomes (t^2 + 2*delta{t}*t + delta{t}^2 - t^2)/delta{t} -->
+                    (2*t*delta{t} + delta{t}^2)/delta{t} -->
+                    2t + delta{t} --> which as delta{t} gets smaller and smaller looks more and more like 2t (if delta{t} became 0)
+       This calculated the derivitive of t^2 nomencalture f'(t) or in this case where p(t) = t^2 ==> p'(t) = 2t
+       
+  2) Integral -- the accumulation of small pieces that add up to an object
+     Deals with calculations like determining the area under a curve like, using the above example
+     Suppose we know the instantaneous speeds (and their associated moments) while traveling along a road 
+       but we want to know the distance actually travelled.
+     We would sum the distances traveled in ever decreasing time intervals.
+     We know, in this case, that the velocity (instantaneous) is v(t) = 2t
+     then the distance is the summation of of all the small distances covered (with better aproximations as the time intervals get smaller and smaller.
+     Integral(n, 0, t, v(n) = 2n) --> sum(n,0,t, v(n*delta{t})*delta{t}) divided by delta{t}
 
-Closely related (but not quite inverses?)
-
-Next up Fundamental Theorem of Calculus connects the process of the integral with the process of the derivitive
-Lesson Four (Great Courses) Taking a break from Coursera to review material in great courses lectures (to get rid of disks))
-
-Previous shown that the derivitive maps from position(distance) to speed and the integral maps from speed to position(distance) (in the moving car example)
-View moving car from two view the static view that states we started at point x and we ended at point y subtract x from y to get distance travelled
-The dynamic view wants to take a look at intervals along the way and sum up the distances covered at each intervals
-Given the position function P(t) = t^2 the velocity function will be V(t) = 2t
-
-Suppose V(t) = 3t^2 then P(t) = t^3
+The derivitive and the integral are closely related as inverses but are not true inverses. Given an integral of a function; An antiderivitive is a function
+  that when the derivitive of that functions is found gives us the given integral. Antiderivitives are not unique. So 2t is the derivitive of t^2 and t^2 is an
+  antiderivitive of 2t, but the integral of 2t is (t^2 + C) where C is some Constant value.
 
 Derivitive is the tangent to the given line of a curve (it is the slope of the tangent to that curve)
 
 The mean value theorem for derivitives -- there is some moment in time your instantaneous speed will be exactly equal to the avergae time.
 
-d/dt(t^2) = 2t (Lebniz's notation for the derivitive ...)
+(delta{}/delta{t})(t^2) = 2t (Lebniz's notation for the derivitive ...)
 or
 P(t) = t^2
 P'(t) = 2t
 
 Derivitives measure the rate of change of one quantity with respect to another quantity
 
-The square (as an example) area = x^2
-we can ask the question how fast does the area grow as we increase the side of a square
-((x+dx)^2 - x^2)/dx is the formula representing this question.
-Notice similarity between (P(t+dt) - P(t))/dt
+Given the square (as an example) area = x^2 we can ask the question how fast does the area grow as we increase the side of a square
+  ((x+delta{x})^2 - x^2)/delta{x} is the formula representing this question.
+  Notice similarity between (P(t+delta{t}) - P(t))/delta{t}
 
 The circle area = pi*r^2
-(A(r+dr) - A(r))/dr
-In fact A'(r) = (d/dr)(pi * r^2) = 2*pi*r
+  (A(r+delta{r}) - A(r))/delta{r}. In fact A'(r) = (delta{}/delta{r})(pi * r^2) = 2*pi*r
 
 If we put a belt on the earth so that is fit tight (matched the circumference) and then made the belt six feet longer how much space would
   there be between the earth and the belt.
@@ -155,15 +100,12 @@ P(t) = C*t (C is a constant)
 P'(t) = C
 
 P(t) = t^2
-((t + dt)^2 - t^2)/dt = (t^2 + 2*t*dt + dt^2 = t^2)/dt = ((2*t*dt) + dt*2)/dt = 2t + dt so (d/dt)(t^2) = 2t
+  ((t + delta{t})^2 - t^2)/delta{t} = (t^2 + 2*t*delta{t} + delta{t}^2 = t^2)/delta{t} ==>
+  ((2*t*delta{t}) + delta{t}*2)/delta{t} = 2t + delta{t} so (delta{}/delta{t})(t^2) = 2t
 
-extending and generalizing f(x) = C*x^2 --> f'(x) = 2*C*x
+extending and generalizing f(x) = C*x^2 --> f'(x) = 2*C*x and still further f(x) = C*x^N --> f'(x) = f'(x) = N*C*x^(N-1)
 
-and still further
-f(x) = C*x^N --> f'(x) = f'(x) = N*C*x^(N-1)
-
-and as sums
-F(x) = 5x^3 + 2x + 3 --> f'(x) = 15x^2 + 2
+and as sums f(x) = 5x^3 + 2x + 3 --> f'(x) = 15x^2 + 2
 
 Using sine function
 Note: given a unit circle (with radius 1), draw two radii, measure the angle between them and call that angle theta ... then draw a line from the intersection of one radius and the cicumference of the circle
@@ -177,7 +119,6 @@ What is the change of sin theta when we change theta.
 (d/d theta)(sin theta) = cos theta
 (d/d theta) (cos theta) = -sin theta
 
-Finally ... starting to say something concrete about the Integral
 Finding the Integral of a curve is also finding the area under a curve.
 
 Notation Intergral from 0 to 3 2t dt (delta t) ... Elongated letter S with subscript start of range and superscript end of range
@@ -186,32 +127,17 @@ the 2t dt is (the 2t is the rectangle formula for a problem (could be something 
 The fundamental Theorem of Calculus: Integral from a to b(F'(x) dx) = F(b) - F(a) try this, since no elongated S with sub/super script available to me in NotePad++
    Integrate(a, b, F'(x) dx) = F(b) - F(a)
    
-if (G(x) = F'(x)) then G(x) is the derivitive of F(x) and F(x) is an antiderivitive of G(x) (Note: the antiderivitive is not unique)
-  Example: P(x) = t^2 and F(x) = t^2 + 100 the P'(x) = F'(x) even though P(x) =/= F(x)
-  
-Another aside: Buffon's Needle ... suppose we have multiple parallel lines each n units apart from its neighbors 
-and a stick that is n units long. Suppose also that we throw this stick (or drop) on these lines and record the number
- of times that we do the throws as well as the number of times the stick crosses on of the lines ... 
- 
-Integral(0,pi, sin(theta) delta theta) = -cos(pi) - (-cos(0)) = -(-1) - (-(1)) = 2
-
-Finally talking about limit ... the above is a lot of examples without really explaining the derivations (it seems to me ... I am not fond of this lecturerer 
-he puts me to sleep in about 15 minutes and he feels condescending.
-
-A discusion of Zeno's achiles and the tortoise paradox ... suppose that achilles can run 10 times faster than the tortoise and so we give the tortoise a 1
-unit head start ... so as achiles runs to that location the tortoise has moved to location 1.1 so achilles runs to 1.1 and the tortoise has moved to 1.11 and
-so on showing that achilles can never catch the tortoise.
-
+Finally talking about limit
 a limit is ...
-limit as x approaches 2 of the function ((x^2)-4)/(x-2) is the value that the function approaches (converges on) as x gets closer and closer to 2
+the limit as x approaches 2 of the function ((x^2)-4)/(x-2) is the value that the function approaches (converges on) as x gets closer and closer to 2
 
 Definition of the limit:
 limit as x approaches c of f(x) = l
 lim(x,c,f(x)) = l
-For All epsilon greater than zero, There exists a lower case delta greater than zero such that if
+For all epsilon greater than zero, there exists a lower case delta greater than zero such that if
   the absolute value of (x - c) < lower case delta, then the absolute value of (f(x) - l) < epsilon
 so now (finally)
-d/dx(x^2) = lim(dx,0,(((x+dx)^2)-(x^2))/(dx))
+delta{}/delta{x}(x^2) = lim(delta{x}, 0, (((x+delta{x})^2)-(x^2))/(delta{x}))
 
 Dedekind Cuts ... if you can find a value that separates two sections of the number line (such that the value is not a number)
    call that value a number so that the separation does not exist ... I think I need to think about this and give a better definition that
@@ -238,4 +164,11 @@ M - M/12 = 20 (all the fractions cancel)
 M = 20&9/11
 
 This also shows how repeating decimal expansions can be stated as Rational numbers as well.
+
+Note to self about Newton-Raphson Approximation ... if you want to know the value at a particular place in a curve
+the example was the curve generated by (x^2)-5 (which has as an x-intercept the square root of five) the idea is to make a guess at the value
+plug that value into f(x) ((x^2)-5) and then calulate the slope at that point (derivitive --> f'(x) = 2x)
+calculate the point at which the line for that slope crosses the x-axis to get our second guess
+repeat until we have a sufficiently accurate approximation ... NOTE: this converges vey quickly (at least in this example which gives 9 accurate
+digit after three iterations)
 

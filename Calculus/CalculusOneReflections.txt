@@ -19,7 +19,7 @@ Example: f(x) = 1/x ... here the domain cannot include the value zero (0)
 
 NOTE: Given a function f, it is true that if f(a) = b and f(a) = c then b = c
         if that is not true then f is not by definition a function
-
+=====================================================================================================================================
 I took a week to watch the 'Great Courses: Change in Motion: Calculus Part 1 (& Part 2)' The following notes come from that course.
   I cannot recommend this course for any trying to get a serious discussion of calculus with any clarity or rigor ... there were many
   digressions that were only loosely connected ... the speaker 'uh'ed repeated words and phrases and often stopped mid sentence and 
@@ -171,4 +171,49 @@ plug that value into f(x) ((x^2)-5) and then calulate the slope at that point (d
 calculate the point at which the line for that slope crosses the x-axis to get our second guess
 repeat until we have a sufficiently accurate approximation ... NOTE: this converges vey quickly (at least in this example which gives 9 accurate
 digit after three iterations)
+=====================================================================================================================================================
+Back to the Udacity course
+What is a limit?
+To say that limit(x,a,f(x)) = L says that f(x) can be made as close to L as desired by making x close enough to a.
+
+Fact: near the sum of two numbers is the sum of  two nearby numbers
+
+Facts: limit(x,a,f(x) + g(x)) = limit(x,a,f(x)) + limit(x,a,g(x))
+  limit of sums is equal to sum of limits (given limits exist)
+        limit(x,a,f(x)*g(x)) = limit(x,a,f(x))*limit(x,a,g(x))
+  limit of product is equal to product of limits (again provided limits exist)
+        limit(x,n,x) = n
+  limit of a value as it approaches a value is that value (could be better phrased I think)
+  
+Using this : what is the limit(x,2,x^2+x) ==> limit(x,2,x^2)+limit(x,2,x) ==> limit(x,2,x)*limit(x,2,x) + 2 ==> 2*2 + 2 ==> 6
+
+What is limit(x,0,sin(1/x))? NOTE: THIS LIMIT DOES NOT EXIST!!
+What about f(x) = sin(pi/x)? Apparently this DNE (Does Not Exist) as well
+What about f(x) = sin(x)/x? What is limit(x,0,sin(x)/x)?
+
+Given cos(x) < sin(x)/x < 1 when x is close to 0 ... this is stated as given fact
+limit(x,0,cos(x)) = 1 Note: cos(x) is continuous so we can eval at 0 to show it is 1
+limit(x,0,1) = 1 ... sort of obvious
+
+Use 'Squeeze Theorem' which states
+if g(x) <= f(x) <= h(x) for values of x near a
+and limit(x, a, g(x)) = limit(x, a, h(x)) = L
+then limit(x, a, f(x)) = L
+
+So limit(x,0,sin(x)/x) = 1
+
+Other useful stuff limit(x,0,sin(-4x)/-7x) = 4/7
+  Note: limit(x,0,sin(-4x)/-7x) == limit(x,0, ((4/7)*sin(-4x))/((4/7)*-7x)) == limit(x,0,((4/7)*sin(-4x))/-4x) == (4/7)*limit(x,0,sin(-4x)/-4x) because limit of products is product of limits and lim(x,a,C) is C
+    ==> 4/7 because sin(-4x)/-4x is sin(y)/y and the limit(x,0,sin(y)/y) is 1 as shown above
+    
+What about limit(x,1,((x^2)-1)/(x-1))? Note: as long as x != 1 then ((x^2)-1)/(x-1) = x + 1 which means that (as far as I can tell from example)
+  that limit(x,1,((x^2)-1)/(x-1)) = limit(x, 1, (x+1)) = limit(x,1,x) + limit(x,1,1) = 1 + 1 = 2
+  This works because of the definition which states that we are not making x = a but instead are saying it is a close as we want to a
+
+Difference of limits = limit of differences provided the limits exist
+Division of limits = limit of divisors provided the limits exist AND the denominator limit is not zero
+Let's try limit(x,2,((x^2)/(x+1))) ==> limit(x,2,x^2)/limit(x, 2, x -1) ==> (limit(x,2,x)*limit(x,2,x))/(limit(x,2,x)-limit(x,2,1) ==> (2*2)/(2-1) ==> 4/1 ==> 4
+  
+
+
 

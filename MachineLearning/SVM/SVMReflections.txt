@@ -28,5 +28,7 @@ Disadvantages --- not so good with large data-sets or with data that is very noi
 
 Advantages --- good in high dimensioned spaces, memory efficient, very versatile via kernels
 
+rbf is slow ... can make faster by decreasing training data-set but this will probably (highly likely) lose significant accuracy
+C will improve accuracy but may need to be very high (how high? I wonder if there is a calculation that can be made?)
   
   

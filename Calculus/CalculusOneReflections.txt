@@ -214,6 +214,28 @@ Difference of limits = limit of differences provided the limits exist
 Division of limits = limit of divisors provided the limits exist AND the denominator limit is not zero
 Let's try limit(x,2,((x^2)/(x+1))) ==> limit(x,2,x^2)/limit(x, 2, x -1) ==> (limit(x,2,x)*limit(x,2,x))/(limit(x,2,x)-limit(x,2,1) ==> (2*2)/(2-1) ==> 4/1 ==> 4
   
+More on limits:
+limit(x,a+, f(x)) = L means that f(x) is as close as you want to L provided x is near enough to a on the right.
+limit(x,a-, f(x)) = L means that f(x) is as close as you want to L provided x is near enough to a on the left.
+if limit(x,a+,f(x)) != limit(x,a-,f(x)) then limit(x,a,f(x)) DNE.
+if limit(x,a+,f(x)) == limit(x.a-,f(x)) == L then limit(x,a,f(x)) = L.
 
-
+Continuity:
+Morally, "f(x) is continuous at a" means that inputs near a are sent to outputs near f(a).
+Looks like f(x) = squareroot(x) is continuous at 2.
+To say that "f(x) is continuous at a" means that limit(x,a,f(x)) = f(a).
+  must be able to say f(x) is defined at x = a.
+  lim(x,a,f(x)) must exist.
+  
+To say that "f(x) is continuous on the "open" interval (a,b)" means that, for all points c so that a < c < b, f(x) is continuous at c.
+To say that "f(x) is continuous on the "closed" interval [a,b]" means that f(x) is continuous on the open interval (a, b) and
+  that limit(x,a+,f(x)) = f(a) and 
+  that limit(x,b-,f(x)) = f(b).
+  
+Intermediate Value Theorem
+Suppose:
+  f(x) is continuous on [a,b], and
+  y is between f(a) and f(b).
+Then
+  there is an x between a and b so that f(x) = y.
 

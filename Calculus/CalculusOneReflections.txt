@@ -9,6 +9,15 @@ A function assigns to each number in its domain another number.
 E.G. f(x) = y where x is a number in f's domain.
 NOTE: This is read 'f of x is y'
 Another definition -- a functions expresses a relationship between dependent quantities. (Great Courses)
+A Definitive definition from the textbook CalculusOneUdacity.pdf (Stored in Books on same drive as this file)
+A function is a relation between sets, where for each input, there is exactly one output. 
+  A math rephrasing if f is a function then if f(x) = a and f(x) = b then a = b.
+  Should also note that A = {x:x is element of S} and f(a) = b and a is an element of A and b is an element of B = {y: y is an element of T} then S is the domain
+  of f (ditto A ... redundant definition) and T is the range (as is B ... again redundant)
+A function is one-to-one if for every value in range there is exactly one value in the domain.
+  if f(x) = a and f(y) = a then x = y follows from f being one-to-one.
+  a function has an inverse if it is one-to-one (otherwise we may be able to restrict the domain so that the function has an inverse over that interval.
+  
 
 If we say f(x) = x^2 then we are saying that the function f squares f's argument. E.G. F(3) = 3^2 = 9
 

@@ -1,0 +1,26 @@
+Largely a course on game theory ... not clear at this time if it's an MBA course/economic course or a game theory course
+Important things to know (the ones that matter .. number of players, actions each player can take, payoffs on each action/player, and rules (simultaneous/ turn etc.)
+
+Dominant strategy is a strategy that always pays more than other strategies regardless of other players actions.
+  if there is a dominant strategy then it is clear what will happen ... choose that strategy and the opponent's will choose their strategies knowing what you will do.
+Dominated strategy is a strategy that always pays less then other strategies regardless of other playe's actions.
+  eliminate dominated strategies one at a time until either it is clear what all opponents will do or until their are no more dominated strategies left to eliminate.
+  
+Nash Equilibrium -- no player can choose a strategy that will increase their payoffs.
+  a nash equilibrium is a combination of strategies such that no player can deviate unilaterally from their current strategy to improve their payoffs.
+  
+Prisoners Dilemma -- a situation where the best strategies of the players leads to payoffs that are less than other strategies but niether player has an incentive
+  to choose the other(s) strategy.
+                player B
+  player A    | Advertise | Don't
+    Advertise |  2.5\2.5  | 5.5 \ 2.0
+        Don't |  2.0\5.5  | 5.0 \ 5.0
+
+        A's payoff\B's payoff
+
+Not a problem of information .. the players know the table ... but both players act selfishly without communication with each other ... result does not maximize joint payoffs
+
+The above holds for simultaneous decisions but not for sequential decisions ... use a tree instead
+
+Backward induction ...eleimate actions at final node and work up the tree
+choose actions that do not maximize the choice makers payoff at each point and remove that/those actions

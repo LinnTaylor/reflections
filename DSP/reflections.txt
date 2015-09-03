@@ -1,0 +1,71 @@
+I'm looking forward to learning how to really use Audacity.
+
+I'm wondering if I'll use Sonic Visualizer after this class expecially given I acqure the knowledge to implement these task myself.
+  Need (maybe) to get more VAMP plugins.
+  
+Info I need to get solid with:
+
+Sinusoidal Functions (SineWaves)
+
+  x[n] = A*cos(omega*n*T + phi) = A * cos(2*pi*frequency*n*T + phi)
+where:
+  A = the amplitude of the sine wave
+  omega (lower case) = angular frequency in radians
+  frequency = omega / (2 * pi) = frequency in Hertz
+  phi (lower case) = initial phase in radians
+  n = time index
+  T  = 1/frequency = sampling period in seconds (t = nT = n/(frequency sub s)
+  
+that is straight from notes from lecture ... the picture I have of above is fairly clear but not 100%
+
+Complex Numbers
+
+  a + jb --> j = root(2, -1) a,b both elements of the real numbers 
+    above is the rectangular form can be represented on cartesian graph using a as x coordinate (the Real axis) and b as y coordinate (Complex axis)
+    
+  can also be represented in Polar form as a vector that begins at the origin (0) with a magnitude (length) A = root(2, a^2 + b^2) and an angle of displacemtn
+    from the positive real axis phi (lower case) = tan inverse(b/a)
+    the polar form can make addition and multiplication more intuitive
+    
+Euler's Formula
+
+  raise(e,j*phi) = cos(phi) + j*sin(phi)  (can draw this using a unit circle such that magnitude = 1/frequency
+  
+  cos(phi) = (raise(e,j*phi) + raise(e,-j*phi))/2
+  sin(phi) = (raise(e,j*phi) - raise(e,-j*phi))/(2*j)
+  
+Complex Sine wave
+
+  (x bar)[n] = A*raise(e,j*(omega*n*T+phi) = A*raise(e,phi)*raise(e,j*(omega*n*T) = X*raise(e, j*(omega*n*T)
+    (X = A*raise(e,phi))
+             = A*cos(omega*n*T + phi) + j*sin(omega*n*T + phi)
+             
+Real Sine wave
+  x[n] = A*cos(omega*n*T + phi) = A*((raise(e,j*(omega*n*T+phi)) + raise(e, -j*(omega*n*T + phi)))/2)
+       = (1/2)*X*raise(e, j(omega*n*T)) + (1/2)*(X star)*raise(e,-j*omega*n*T = (1/2)(x bar)[n] + (1/2)(x bar star)[n]
+       = Reals of set with (x bar)[n] s (will be converting Complex to Reals)
+
+Scalar (Dot Product) product of sequences
+  <x,y> = sum(n,0,N-1, x[n]*(y bar)[n])  does (y bar) indicate conjugate???
+  Example: x = [0,j,1] and y = [1, j, j]
+     <x,y> = 0*-1 + j*-j + 1*-j = 0 + 1 + -j = 1 - j
+     
+     x orthoganal y means <x,y> = 0 (I recall this from linear algebra)
+     
+     if x = [2,2] and y = [2,-2] then <x,y> = 2*-2 + 2*2 = 4-4 = 0 so x orthoganal y
+     
+     so yes, in this case (y bar) is conjugate of y!!!
+     
+Even and Odd Functions
+  F(n) is even if F(-n) = F(n) .... symetrical about origin
+  F(n) is odd if F(-n) = -F(n) .... antisymetric example showed rotational symetry a sine wave with phi not equal zero
+    cosine is even and sine is odd
+    
+Convolution (here I may be in trouble for a bit)
+
+   y[n] = (x sub 1)[n] * (x sub 2)[n])sub n = sum(m,0,N-1,(x sub 1)[n]*(x sub 2)[N-m])
+     similar to cross cerrelation (so he says) ... did not follow this well at all
+     
+References: Wikipedia entries Sinusoid,Complex_Numbers,Euler_Formula,Dot_Product,Convolution
+For math of DFT https://ccrma.stanford.edu/~jos/mdft
+

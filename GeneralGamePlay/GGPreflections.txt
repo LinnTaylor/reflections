@@ -1,0 +1,155 @@
+GDL Game description language looks like a simplified prolog (and examples look like prolog or like prolog with a lisp syntax)
+
+Logic programs = collection of sentences that are either enumerated explicitly or stated indirectly as logical rules used to formulate the sentences
+Example is standard prolog first examples
+
+Data of the form parent(parentName, childName)
+
+and a rule grandparent(X,Z) := parent(X,Y) & parent(Y,Z)
+which will generate statements of the form grandparent(grandParentName,grandChildName) from the data given
+
+no assert or cut in GDL ... semantics is purely declarative
+built of four disjoint classes of symbols
+Object constants (lower case alpha as first character)
+Function constants (also lower cased first char)
+Relation constants (also lower cased first char)
+Variables first letter upper cased
+
+Arity of function is number of arguments used in defintion
+
+Term: Object constant or Variable or Functional Terms like f(a), g(X, b)
+  IN GDL can NOT nest functional terms ... not sure but I think he is syaing f(a, g(X,b)) is not a legal term in GDL
+
+Atom: a functional term like p(a)
+Negation: ~p(a)
+
+literal: an atom or negation
+atom is a positive leteral
+negation is a negative literal
+
+rule: of the form p(x1,x2,...,xn) :- subgoal
+p(...) is the head
+a subgoal is a conjunction of subgoals each of which is a literal
+p(...) & ~p(....) as an example subgoal
+
+it is understood that the head is true of all atoms in goals are true and all negations in goal are false
+a program is a finite set of atoms and rules
+
+gdl restrictions
+all rules must be safe: is safe iff every variable in head is found in one or more atoms in subgoals (positive literals)
+
+stratified recursion: all variables used in a recursive invocation are used in subgoals of expression that do not recurse on this relation
+   r(X,Z) :- p(X,Y) & q(Z) & r(Y, Z) ... both Y and Z appear in atoms that are not recursive on r
+   r(X,Y) :- r(X,Y) & r(Y,Z) ... not stratified
+all gdl rules recursions are stratified
+
+the negation in a set of rules is stratified if no recursive cycle involving a negation
+    t(X,Y) :- q(X,Y) & ~r(X,Y)
+    r(X,Z) :- p(X,Y)
+    r(X,Z) :- r(X,Y) & r(Y,Z) these three rules are stratified negative recurasion
+    
+    negation not stratified (ie a negation of function happens when recursing the function)
+    r(X,Y) :- p(X, Y, Z)
+    r (X,Z) :- p(X,Y,Z) & ~r(Y,Z)
+again all gdl is stratified
+
+Herbrand Universe : list of all atoms that can be in rules (is finite)
+Herbrand Base list of all functions in Universe
+Herbrand Interpretation is a subset of Herbrand Base (includes possibility of empty set)
+
+an interpretation delta satisfies a ground sentence under these conditions:
+delta satisfies an atom phi iff phi is an element of delta
+delta satisifes ~phi iff phi is not an element of delta (generally if delta does not satisfy phi)
+delta satisfies phi1 & phi2 & ... & phiN iff delta satisifies all phi sub n
+delta satisfies phi2 :- phi1 iff delta satisfies phi2 whenever delta satisifes phi1
+
+delta satisfies a non-ground sentence iff delta satifies every ground sentence of that sentence. (no-ground sentence has variables)
+
+GDL constants
+ 0,1,2,3,...,100
+ 
+ role(role)
+ base(proposition)
+ input(role, action)
+ init(proposition)
+ true(propostion)
+ next(proposition)
+ legal(role, action)
+ does(role, action)
+ goal(role, number)
+ terminal
+ 
+ Inputs
+ true, does
+ Outputs
+ role,base,input,init ... independant of true and does
+ legal, goal,terminal .... dependant on true
+ next ... dependant on both true and does
+ 
+ Let's look at a specific game (Tic-Tac-Toe)
+ Object Constants
+ white, black --- roles
+ 1,2,3 --- indeces of rows and columns
+ x, o, b --- marks (b for blank)
+ noop --- noop action
+ 
+ Function constants
+ cell(index,index,mark) --- proposition true if rowindex,columnindex has mark
+ control(role) --- proposition true is role is current player
+ mark(index,index) --- action designates that row column gets mark based on who has control
+ 
+ relation constants
+ row(index, mark)
+ column(index,mark)
+ diagonal(mark)
+ line(mark)
+ open
+ 
+ they keep showing a page of the gdl for tic-tac-toe ... must find that as a source document ....
+ 
+ Okay now how the system works ... ie the protocol stuff
+  five types of messages
+  (info)
+  (start id role (s1 ... sn) startclock playclock)
+  (play id (p1 .... pn))
+  (stop id (p1 ... pn))
+  (abort id)
+  
+  (info) used to see if player is up and running
+     expected replies
+        ready --- indicates ready to play
+        nil --- not ready
+        busy --- not ready
+        <no reply> --- assumed not ready
+        
+  (start id role (s1 .... sn) startclock playclock)
+     id is a match identifier
+     role is one of roles for this recipient
+     (s1 ... sn) list f game rules
+     startclock --- when game will start (either when all players have responded or clock runs out)
+     playclock --- how much time to reply to play message
+     
+  (play id (p1 ... pn)) request action from player
+    (p1 .... pn) actions previously taken by players first time will be nil
+    reply is legal action (if not legal (or playclock times out) then manager will supply randomly chosen legal action)
+
+  (stop id (p1 .... p2))
+    game has terminated properly
+    (p1 is last moves)
+    reply with done
+    
+  (abort id) announce match has been terminated abnormally
+    reply with done
+    
+  general flow of manager
+  begins with reciept of request to run a given match with givn players of a given game with a given startclock and given playclock
+  send info messages
+  send start messages
+     players say ready
+  send play messages to get plays
+     players send plays
+  send stop when game terminates
+  
+  send abort for abnormal termination
+  
+  

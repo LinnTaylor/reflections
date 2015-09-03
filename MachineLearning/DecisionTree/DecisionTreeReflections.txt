@@ -1,0 +1,16 @@
+Essentially Decision Trees recursively break a space down asking dichotomously:
+  Where can I draw a line such that on one side of line all (or most) of samples classify one way.
+  
+Entropy (when talking about decision trees: controls how the DT determines where to split the data
+  definition:measure of impurity in a bunch of samples
+  
+  formula: sum(i,?,?, -(p sub i) * log base 2(p sub i))
+    p sub i is fraction of examples in class p sub impurity
+    sum over all classes
+    
+    all examples are in same class entropy = 0.0
+    classes evenly split (ie 50% yes 50% no) entropy = 1.0
+    
+  Information Gain = entropy(of parent) - weighted average of entropy(of children)
+  
+  decision tree algorithm maximizes Information Gain

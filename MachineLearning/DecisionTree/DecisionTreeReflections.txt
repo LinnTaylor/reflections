@@ -14,3 +14,8 @@ Entropy (when talking about decision trees: controls how the DT determines where
   Information Gain = entropy(of parent) - weighted average of entropy(of children)
   
   decision tree algorithm maximizes Information Gain
+  
+bias is error from wrong assumptions about the data ... high bias can lead to under-fitting data ... ignoring relevant relationships in the data
+
+variance is error due to small fluctuations in dataset ... noise ... high variance can lead to overfitting data ... ignoring possibility of noise
+

@@ -25,6 +25,7 @@ from sklearn.metrics import accuracy_score
 
 
 acc = accuracy_score(clf.predict(features_test), labels_test)### you fill this in!
+
 ### be sure to compute the accuracy on the test set
 
 

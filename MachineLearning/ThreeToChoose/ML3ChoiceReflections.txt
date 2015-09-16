@@ -1,0 +1,20 @@
+Major Walk Away
+
+KNeighborClassifier -- easy intuitive and (in this particular case) seems easy to adjust to improve performance
+  essentially classifies based on K nearest neighbors classification
+  
+RandomForest -- reasonable intuitive but not so easy to improve performance from defaults
+  essentially grow a handful of trees and let them 'vote' on classification
+  the most intuitive things to adjust is how deep to traverse tree and the parameters to use on the trees like min_samples_split
+  
+AdaBoost (pronounced add Add a not the name Ada) --- develops a number of classifiers using adjusted weights to classify data
+  clever this and it can use any classifier it likes even different ones ... very sweet and the most complex
+  
+Both RandomForest and AdaBoost are 'ensemble' classifiers in that they use multiple classifiers that have been constrained weekly
+  and use the normalized results to vote on classidication of input ... the voting method is very cool ... I attempted something like
+  this with word sense disambiguation back in 2005 for an NLP class ... I failed the attempt ... in part to my a misunderstanding
+  of the data set and largely due to piss poor choice of partner (a non-coder ... how is that possible in a C.S. course??)
+  
+I was surprised that I got the KNeighborClassifier to improve on the 93.6% accuracy and also
+  to not be able to achieve better results with either of ensemble methods ... I suspect that I've missed something.
+ 

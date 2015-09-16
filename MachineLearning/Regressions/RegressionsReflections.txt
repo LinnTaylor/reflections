@@ -1,0 +1,15 @@
+Okay so if we constrain the output to a dichotomous answer (boolean yes or no ... o or 1 ... etc.)
+  this is a Discrete classifier
+  
+On the other hand if we were training to guess weight given height this would be a continous classifier
+
+In general if there is an ordering of theoutput data ie two consecutive value have a relationship that orders them then
+  the classifier is continous 
+and if there are multiple choices for output classification but they have no ordering then
+  the classifier is discrete ... so guessing phone number given name is discrete as is guessing whether it will be sunny cloudy or raining
+  
+LinearRegression
+Note structure of coef_
+and of intercept_ -- they both need [] with index (coef_ needs[][]) ... just look at structure
+score returns r-squared metric .. higher is better ... used on test data ... can get for training data as validator
+

@@ -1,0 +1,163 @@
+Interesting Game --- prisoners deilemma that I can relate to ... very cool
+Two Player
+Both have same choices. To use a Correct TCP or a Defective TCP
+Both Correct -> Both Experience a 1ms delay in communications
+Both Defective -> Both Experience a 3ms delay
+A Defects and B Correct -> A experiences no delay while B gets a 4ms delay
+A Coorect and B Defects -> A gets a 4ms delay while B experiences no delay
+
+Cute
+
+Self interested agent does not mean that they want to harm others or that they care only about themselves but that the agent
+  has its own description of states of the world that it likes, and will act based on this description
+  
+Each agent has a utility function that quantifies degree of preference over lternatives, explains the impact of uncertainty, and
+  has a decision-theoretic rationality (acts to maximize the expected utility)
+  
+Untility:
+  Why is a single dimensional function sufficient?
+  Why should the response to uncertainty by captured by an expected value?
+  
+Famous theorem by von Neumann & Morgenstern that derives the existance of a utility function from a more basic preference ordering and
+  axioms on such orderings.
+  
+Key Ingredients:
+Players: (The Decision Makers)
+Actions: (What actions can players take (what are their options))
+Payoffs: (What is players motivation ... what do they get interm of their utility function)
+
+Two representations for defining games
+Normal Form: Also called Matrix Form and Strategic Form
+  (for two players this is a matrix with rows representing actions of one player and columns actions of the others
+
+Extensive Form (for two players this is a tree with alteranting players choices listed at each node
+
+Matrix Form used for games where players make choices Simultaneously
+Extensive Form when players act react in turn
+
+Finite n person Normal Form is <N, A, u>
+Players: N = {1...n} a finite n indexed with i
+Action Set for Player i is A sub i where a = (a sub 1, ... a sub n) is an element of A sub i X ... A sub n ((a is an 'action profile'))
+Utility Function or Payoff function for player i called u sub i (it maps A to Reals)
+  u = (u sub 1, ..., u sub n) is profile of utility functions
+  
+Games with two players can be shown with matrix form is simultaneous
+
+But a game with 10,000,000 players
+
+Suppose a population of 10,000,000 can (each player) choose to revolt or not
+Further suppose that you need at least 2,000,000 to choose revolt in order for a revolution to occur
+Let the utility be
+get a reward of 1 if 2,000,000 choose to revolt (regardless of whether you chose to revolt or not)
+get a reward of -1 if less than 2,000,000 choose to revolt and you chose to revolt
+get a reward of 0 if less than 2,000,000 choose to revolt and you did not choose to revolt (chose not)
+ note that in this case the question is related to participation ie payoff depends on others as well as self
+ 
+While Normal form we need Players, Actions, and Payoffs
+In Extensive Form we may also need Timing of decisions and Information Known at time of decision-theoretic
+
+Cool Prisoner's dilemma is an two player two action game
+a,a b,c
+c,b d,d
+where c > a > d > b
+I knew there was a relationship stance that could define some (all?) games.
+
+Games of pure competion (Players have exactly opposed interests)
+Must be two and only two players
+for all action profiles the sum of the utility functions = a constant (with the special case being zero-sum
+so we only need to track one players utility function
+simple example matching heads/tails one player wants to match the other wants to mismatch
+
+        heads   tails
+heads     1,-1   -1,1
+tails     -1,1   1,-1
+
+generalized match pennies
+          rock    paper   scissors   
+rock        0,0    -1,1     1,-1
+paper       1,-1   0,0      -1,1
+scissors    -1,1   1,-1     0,0
+
+Games of cooperation: players have exactly the same interests
+no conflict
+For all action profiles For all i and j u sub i of action = u sub j of action
+only need single payoff per cell
+  which side of rode to drive on (left or right)
+     left    right
+left  1,1     0,0
+right  0,0     1,1
+
+
+Mixed of above 
+Battle of the sexes going to see movie together (Action or Romantic)
+      A       R
+A   2,1     0,0
+R    0,0     1,2
+
+
+Nash Equilibria
+Keynes Beauty Contest Game
+You hold a stock and the stock price is rising
+You believe that the price is too high to be justified by the value of the company
+You want to sell but you would like to wait until the price is almost at peak
+You want to get out of market before the other investors do
+Stylized version of this game:
+Keynes proposed a beuty contest where you have to decide who others will think will win a beuty contest
+Each player can choose a number between (inclusive) 1 and 100 (integer)
+Players will move simultaneously
+The player who names the integer closest to two thirds of the average integer wins a prize everyone else gets nothing
+Ties will be broken by random selection
+
+So thinking what other players are thinking I want to guess 2/3 of X
+Bu X cannot be bigger that 100 so I should guess 67
+But I know that all players will think this so I need to guess 2/3 of 67
+But I know that all players will know this as well so I should guess 2/3 of 2/3 of 67
+And so on till I hit One so I vote 1 so does all others and winner is randomly selected
+1, in this case is nash equilibria
+Is Not the game gets played largely because some players do not understand the nature of the game or misunderstand the evaluation of the game
+
+Nash Equalibrium assumes
+A Consistent list of actions
+Each players action maximizes their payoff given the actions of others
+Self consistent or stable
+No one has an incentive to deviate from their chosen action (if they do it is not a Nash Equilibrium)
+
+Your Best Response is an action such that this action yields a highr payoff that any other action you could take given the others actions remain the same.
+So A NAsh Equilibrium is a set of actions such that for all players no other action would give a better payoff given that the other players don not change
+  their action.
+  
+Domoniant\Dominated
+A Strategy (Pure Strategy is choice of action)
+
+Strictly Dominating Strategy a strategy that is always better than any other regardless of what other players choose
+Weakly Dominating is a strategy that is at least as good (greater than or equal to) an other regardless of what other players do
+If every player has a dominant strategy than that Action set is a nash equilibrium and it will be unique (if all strategies Strictly Dominant)
+
+Pareto Optimality ??? first time I've heard of this
+Previous conversations have been about evaluating from the perspective of a player
+Now we will look at games from outside (ie we are not players) Is there a sense in which we can say that some outcomes are better than others?
+  we cannot say that one persons interests are better than anothers
+   and we don't know the currency of each players outcomes
+So let's say that some outcome set for some action set is at least as good as any other outcome for every player and at least on player this
+  outcome strictly dominates all other of their outcomes
+Then we can say that that outcome Pareto Dominates (ie that is a better outcome than some others
+  Not all games have this feature
+ An outcome set is Pareto Optimal if it is not Pareto Dominated by any other outcome
+  this means that there may be multiple Pareto Optimal outcome sets
+Hmmm every game must have at least one pareto optimal outcome .... need to think on this would be nice to see a complete example
+Ahhh Pareto Optimal says there is nothing that dominates it if there could be no Pareto Optimal then each outcome would have to be dominated (strictly)
+  which can't happen ... somebody is on top.
+Examples
+    left    right
+ Left 1,1 0,0
+ Right 0,0 1,1
+ --> LeftLeft and RightRight are both pareto optimal
+ Like Wise in battle of sexes AA and RR are both pareto optimal
+ Penny Matching all are pareto optimal (in general zero-sum games all are Pareto Optimal
+ In Prisoner;'s dilemma all but the defectdefect are pareto optimal
+   defect defect is not because it is pareto dominated by cooperate cooperate
+ The parodox of the Prisoner's dilemma is that the Strictly Dominated Nash Equilibrium Strategy (defect defect) is the only non Pareto Optimal
+  (ie the best strategy by the players does not give the best outcome from an outsiders (nonplayers) perspective)
+
+
+

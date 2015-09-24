@@ -1,111 +1,10 @@
-//*
-public class NormalForm {
-  private String[] names;
-  private String[][] labels;
-  private int payoffs[][];
-  
-  public NormalForm(String[] playerNames, String[][] actionLabels, int[][] payoffs) {
-    names = playerNames;
-    labels = actionLabels;
-    this.payoffs = payoffs;
-  }
-  
-  public void print() {
-  }
-  pubic static void main(String[] args) {
-    NormalForm nf = GameVote.createNormalForm();
-    
-  }
-}
-class GameVote {
-  public static NormalForm createNormalForm() {
-    String[][] labels = {
-      {"Bob", "Vote A", "Vote B"},
-      {"Virginia", "Vote A", "Vote B"},
-      {"Elizabeth", "Vote A", "Vote B"}
-    };
-    int[] actionCounts = new int[labels.length];
-    for (int i=0; i<actionCounts.length; i++) {
-      actionCounts[i] = labels[i].length - 1;
-    }
-    payoffs = calculatePayoffs(actionCounts);
-    return new NormalForm(playerNames, actionLabels, payoffs);
-  }
-  private static int[][] calculatePayoffs(int[] actionCounts) {
-    int[][] result = new int[Coordinates1toN.calulateSize(actionCounts)][playerCount];
-    for (int i=0; i<result.length; i++) {
-    }
-  }
-}
-
-class T {
-  public static String ia2s(int[] array) {
-    String s = "";
-    if (array.length > 0) {
-      s += "" + array[0];
-      for (int i=1; i<array.length; i++) {
-        s += ", " + array[i];
-      }
-    }
-  }
-  public static void pr(String s) {
-    System.out.print(s);
-  }
-  public static void prn() {
-    System.out.println();
-  }
-  public static void prn(String s) {
-    T.pr(s);
-    T.prn();
-  }
-}
-
-class Coordinates1toN {
-  private int[] offsets;
-
-  public Coordinates1toN(int numberOfDimension, int[] dimensionSizes) {
-    offsets = new int[numberOfDimensions];
-    offsets[0] = 1;
-    for (int i=1; i<numberOfDimensions; i++) {
-      offsets[i] = offsets[i-1] * dimensionSizes[i-1];
-    }
-    T.prn("Offsets are: " + T.ia2s(offsets) + ".");
-  }
-  
-  public int to1Dim(int[] coordinates) {
-    int index = 0;
-    for (int i=0; i<indices.length; i++) {
-      location += (offsets[i] * Indices[i]);
-    }
-    return index;
-  }
-
-  public int[] toCoordinates(int index) {
-    //System.out.print("Location " + location + " references indexed by ");
-    int[] indices = new int[numberOfPlayers];
-    for (int i=indices.length-1; i>=0; i--) {
-      indices[i] = location / offsets[i];
-      location -= (indices[i] * offsets[i]);
-    }
-    //System.out.println("(" + arrayToString(indices) + ") with data (" + arrayToString(payoffs[findLocation(indices)]) + ")");
-    return indices;
-  }
-  public static int calculateSize(int[] coordinates) {
-    int totalElements = 1;
-    for (int i=0; i<coordinates.length; i++) {
-      totalElements *= coordinates[i];
-    }
-    return totalElements;
-  }
-}
-/*/
-public class NormalForm
+public class NormalFormOld {
   private int numberOfPlayers;
   private int[] numberOfActions; // player n has numberOfActions[n] actions
   private int[][] payoffs; // this is a table/n dimensional space that is product(numberOfActions) big and each space has numberOfPlayers payoffs (one for each)
   private int[] offsets;
   
-  NormalForm(int[] playerActionCount) {
+  NormalFormOld(int[] playerActionCount) {
     numberOfPlayers = playerActionCount.length;
     numberOfActions = copy(playerActionCount);
     int totalElements = 1;
@@ -407,7 +306,7 @@ public class NormalForm
     };
     //*/
     
-    NormalForm nf = new NormalForm(actions);
+    NormalFormOld nf = new NormalFormOld(actions);
     for (int i=0; i<payOffData.length; i+=2) {
       nf.setPayOffs(payOffData[i], payOffData[i+1]);
     }    
@@ -515,4 +414,3 @@ public class NormalForm
     }
   }
 }
-//*/

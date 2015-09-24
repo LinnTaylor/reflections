@@ -296,10 +296,61 @@ public class NormalForm {
   }
   
   public String bestResponse(int[] strategies, int who) {
-    return "***NIY***";
+    int chosenAction = strategies[who];
+    strategies[who] = 0;
+    int bestPayOff = payoffs[findLocation(strategies)][who];
+    for (int i=1; i<numberOfActions[who]; i++) {
+      strategies[who] = i;
+      if (payoffs[findLocation(strategies)][who] > bestPayOff) {
+        bestPayOff = payoffs[findLocation(strategies)][who];
+      }
+    }
+    
+    String s = "Player " + who + "'s best response to";
+    for (int i=0; i<strategies.length; i++) {
+      if (i == who) {
+        s += " X";
+      } else {
+        s += " " + strategies[i];
+      }
+    }
+    s += " is";
+    for (int i=0; i<numberOfActions[who]; i++) {
+      strategies[who] = i;
+      if (payoffs[findLocation(strategies)][who] == bestPayOff) {
+        s += " (" + arrayToString(strategies) + ")";
+      }
+    }
+    strategies[who] = chosenAction;
+    return s + "\n";
   }
   
   public String nashEquilibria() {
-    return "***NIY***";
+    String s = "The Nash Equilibrium/a is/are ";
+    boolean[] nash = new boolean[payoffs.length];
+    for (int i=0; i<payoffs.length; i++) {
+      nash[i] = true;
+      int[] strategy = findIndices(i);
+      for (int j=0; j<numberOfPlayers; j++) {
+        int pay = payoffs[i][j];
+        int[] newStrategy = copy(strategy);
+        for (int k=0; k<numberOfActions[j]; k++) {
+          newStrategy[j] = k;
+          if (payoffs[findLocation(newStrategy)][j] > pay) {
+            nash[i] = false;
+            break;
+          }
+        }
+        if (! nash[i]) {
+          break;
+        }
+      }
+    }
+    for (int i=0; i<nash.length; i++) {
+      if (nash[i]) {
+        s += " (" + arrayToString(findIndices(i)) + ")";
+      }
+    }
+    return s;
   }
 }

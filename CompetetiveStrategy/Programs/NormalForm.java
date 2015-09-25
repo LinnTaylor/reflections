@@ -3,38 +3,131 @@ public class NormalForm {
   private String[] names;
   private String[][] labels;
   private int payoffs[][];
+  private Coordinates1toN coordinates;
   
-  public NormalForm(String[] playerNames, String[][] actionLabels, int[][] payoffs) {
+  public NormalForm(String[] playerNames, String[][] actionLabels, int[][] payoffs, Coordinates1toN coordinates) {
     names = playerNames;
     labels = actionLabels;
     this.payoffs = payoffs;
+    this.coordinates = coordinates;
   }
   
-  public void print() {
+  public void print(String extra) {
+    int tableSize = coordinates.getNumberOfDimensions();
+    if (tableSize == 2) {
+    } else if (tableSize == 3) {
+      int[] strategy = new int[tableSize];
+      strategy[0] = 0;
+      strategy[1] = 0;
+      strategy[2] = 0;
+    
+      // print the Z actions across the top
+      for (int i=0; i<labels[2].length; i++) {
+        T.pr("\t\t" + names[2] + " '" + labels[2][i] + "'\t\t");
+      }
+      T.prn();
+      T.prn("\t\t\t" + names[0] + "\t\t\t\t\t" + names[0]);
+      T.prn("\t\t" + labels[0][0] + "\t\t" + labels[0][1] + "\t\t\t" + labels[0][0] + "\t\t" + labels[0][1]);
+      
+      T.pr(names[1] + "\t " + labels[1][0]);
+      strategy[2] = 0;
+      for (int i=0; i<labels[0].length; i++) {
+        strategy[0] = i;
+        T.pr("\t(" + T.ia2s(payoffs[coordinates.to1Dim(strategy)]) + ")");
+      }
+      T.pr("\t");
+      
+      strategy[2] = 1;
+      for (int i=0; i<labels[0].length; i++) {
+        strategy[0] = i;
+        T.pr("\t(" + T.ia2s(payoffs[coordinates.to1Dim(strategy)]) + ")");
+      }
+      T.prn();
+
+      T.pr("\t " + labels[1][1]);
+      strategy[1] = 1;
+      strategy[2] = 0;
+      for (int i=0; i<labels[0].length; i++) {
+        strategy[0] = i;
+        T.pr("\t(" + T.ia2s(payoffs[coordinates.to1Dim(strategy)]) + ")");
+      }
+      T.pr("\t");
+           
+      strategy[2] = 1;
+      for (int i=0; i<labels[0].length; i++) {
+        strategy[0] = i;
+        T.pr("\t(" + T.ia2s(payoffs[coordinates.to1Dim(strategy)]) + ")");
+      }
+      T.prn();
+      
+      } else if (tableSize == 4) {
+    } else {
+    }
   }
-  pubic static void main(String[] args) {
+  
+  public static void main(String[] args) {
     NormalForm nf = GameVote.createNormalForm();
     
+    nf.print("Vote");
   }
 }
+
 class GameVote {
   public static NormalForm createNormalForm() {
     String[][] labels = {
       {"Bob", "Vote A", "Vote B"},
-      {"Virginia", "Vote A", "Vote B"},
-      {"Elizabeth", "Vote A", "Vote B"}
+      {"Mary", "Vote A", "Vote B"},
+      {"Sue", "Vote A", "Vote B"}
     };
     int[] actionCounts = new int[labels.length];
     for (int i=0; i<actionCounts.length; i++) {
       actionCounts[i] = labels[i].length - 1;
     }
-    payoffs = calculatePayoffs(actionCounts);
-    return new NormalForm(playerNames, actionLabels, payoffs);
-  }
-  private static int[][] calculatePayoffs(int[] actionCounts) {
-    int[][] result = new int[Coordinates1toN.calulateSize(actionCounts)][playerCount];
-    for (int i=0; i<result.length; i++) {
+    //T.prn(T.ia2s(actionCounts));
+    
+    String[] playerNames = new String[labels.length];
+    for (int i=0; i<labels.length; i++) {
+      playerNames[i] = labels[i][0];
     }
+    //T.prn(T.sa2s(playerNames));
+    
+    String[][] actionNames = new String[labels.length][];
+    for (int i=0; i<actionNames.length; i++) {
+      actionNames[i] = new String[labels[i].length-1];
+      for (int j=0; j<actionNames[i].length; j++) {
+        actionNames[i][j] = labels[i][j+1];
+      }
+      //T.prn(T.sa2s(actionNames[i]));
+    }
+    Coordinates1toN coordinates = new Coordinates1toN(actionCounts);
+    return new NormalForm(playerNames, actionNames, calculatePayoffs(coordinates), coordinates);
+  }
+  
+  private static int[][] calculatePayoffs(Coordinates1toN coordinates){
+    int[][] result = new int[coordinates.getMaxIndex()][];
+    for (int index=0; index<result.length; index++) {
+      result[index] = countVotesAndPay(coordinates.toNDim(index));
+    }
+    return result;
+  }
+  private static int[] countVotesAndPay(int [] votes) {
+    int count = 0;
+    for (int i=0; i<votes.length; i++) {
+      if (votes[i] == 0) {
+        count++;
+      }
+    }
+    int[] pay = new int[votes.length];
+    if (count < 2) {
+      pay[0] = 0;
+      pay[1] = 1;
+      pay[2] = 1;
+    } else {
+      pay[0] = 1;
+      pay[1] = 0;
+      pay[2] = 0;
+    }
+    return pay;
   }
 }
 
@@ -47,6 +140,17 @@ class T {
         s += ", " + array[i];
       }
     }
+    return s;
+  }
+  public static String sa2s(String[] array) {
+    String s = "";
+    if (array.length > 0) {
+      s += "" + array[0];
+      for (int i=1; i<array.length; i++) {
+        s += ", " + array[i];
+      }
+    }
+    return s;
   }
   public static void pr(String s) {
     System.out.print(s);
@@ -62,40 +166,48 @@ class T {
 
 class Coordinates1toN {
   private int[] offsets;
-
-  public Coordinates1toN(int numberOfDimension, int[] dimensionSizes) {
-    offsets = new int[numberOfDimensions];
+  private int[] dimensions;
+  private int maxIndex;
+  
+  public Coordinates1toN(int[] dimensionSizes) {
+    dimensions = new int[dimensionSizes.length];
+    offsets = new int[dimensions.length];
+    dimensions[0] = dimensionSizes[0];
     offsets[0] = 1;
-    for (int i=1; i<numberOfDimensions; i++) {
+    maxIndex = dimensions[0];
+    for (int i=1; i<offsets.length; i++) {
+      dimensions[i] = dimensionSizes[i];
       offsets[i] = offsets[i-1] * dimensionSizes[i-1];
+      maxIndex *= dimensions[i];
     }
-    T.prn("Offsets are: " + T.ia2s(offsets) + ".");
+    //T.prn("Offsets are: " + T.ia2s(offsets) + ".");
+    //T.prn("Dimensions are: " + T.ia2s(dimensions) + ".");
+    //T.prn("Max Index is: " + maxIndex);
+  }
+  
+  public int getMaxIndex() {
+    return maxIndex;
+  }
+  
+  public int getNumberOfDimensions() {
+    return dimensions.length;
   }
   
   public int to1Dim(int[] coordinates) {
     int index = 0;
-    for (int i=0; i<indices.length; i++) {
-      location += (offsets[i] * Indices[i]);
+    for (int i=0; i<coordinates.length; i++) {
+      index += (offsets[i] * coordinates[i]);
     }
     return index;
   }
 
-  public int[] toCoordinates(int index) {
-    //System.out.print("Location " + location + " references indexed by ");
-    int[] indices = new int[numberOfPlayers];
-    for (int i=indices.length-1; i>=0; i--) {
-      indices[i] = location / offsets[i];
-      location -= (indices[i] * offsets[i]);
+  public int[] toNDim(int index) {
+    int[] coordinates = new int[dimensions.length];
+    for (int i=coordinates.length-1; i>=0; i--) {
+      coordinates[i] = index / offsets[i];
+      index -= (coordinates[i] * offsets[i]);
     }
-    //System.out.println("(" + arrayToString(indices) + ") with data (" + arrayToString(payoffs[findLocation(indices)]) + ")");
-    return indices;
-  }
-  public static int calculateSize(int[] coordinates) {
-    int totalElements = 1;
-    for (int i=0; i<coordinates.length; i++) {
-      totalElements *= coordinates[i];
-    }
-    return totalElements;
+    return coordinates;
   }
 }
 /*/
@@ -385,7 +497,7 @@ public class NormalForm
     };
     //*/
 
-    //*
+    /*
     int[] actions = {4, 4};
     int[][] payOffData = {
       {0,0},{-2,-2},
@@ -405,7 +517,7 @@ public class NormalForm
       {3,2},{4,0},
       {3,3},{4,4}
     };
-    //*/
+    //*
     
     NormalForm nf = new NormalForm(actions);
     for (int i=0; i<payOffData.length; i+=2) {

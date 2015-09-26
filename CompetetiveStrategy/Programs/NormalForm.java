@@ -1,19 +1,192 @@
 //*
 public class NormalForm {
+  public static void main(String[] args) {
+    NormalForm nf = GameVote.createNormalForm();
+
+    String [] strategy = {"Vote A", "Vote B", "Vote B"};
+    String[] names = {"Bob", "Mary", "Sue"};
+    
+    T.prn("Payoffs when strategy is (" + T.sa2s(strategy) + "): (" + T.ia2s(nf.getPayoffs(strategy)) + ").");
+    for (int i=0; i<names.length; i++) {
+      T.prn(names[i] + " gets " + nf.getPayoff(names[i], strategy) + " with this strategy: (" + T.sa2s(strategy) + ").");
+      T.prn(names[i] + "'s best reponse(s) is(are) {" + T.sa2s(nf.bestResponse(names[i], strategy)) + "} when players do (" + T.sa2s(strategy) + ").");
+      T.prn(names[i] + "'s strictly dominated strategies: (" + T.sa2s(nf.strictlyDominatedStrategies(names[i])) + ").");
+      T.prn(names[i] + "'s weakly dominated strategies: (" + T.sa2s(nf.weaklyDominatedStrategies(names[i])) + ").");
+      T.prn(names[i] + "'s strictly dominant strategies: (" + T.sa2s(nf.strictlyDominantStrategies(names[i])) + ").");
+      T.prn(names[i] + "'s weakly dominant strategies: (" + T.sa2s(nf.weaklyDominantStrategies(names[i])) + ").");
+    }
+    nf.print();
+  }
+
   private String[] names;
   private String[][] labels;
   private int payoffs[][];
   private Coordinates1toN coordinates;
+  private String title;
   
-  public NormalForm(String[] playerNames, String[][] actionLabels, int[][] payoffs, Coordinates1toN coordinates) {
+  public NormalForm(String title, String[] playerNames, String[][] actionLabels, int[][] payoffs, Coordinates1toN coordinates) {
+    this.title = title;
     names = playerNames;
     labels = actionLabels;
     this.payoffs = payoffs;
     this.coordinates = coordinates;
   }
   
-  public void print(String extra) {
+  public String[] strictlyDominatedStrategies(String name) {
+    int player = getNameIndex(name);
+    String [] actions = labels[player];
+    
+    for (int actionIndex=0; actionIndex<actions.length; actionIndex++) {
+      boolean dominated = true;
+      for (int strategyIndex=0; strategyIndex<payoffs.length; strategyIndex++) {
+        int[] strategy = coordinates.toNDim(strategyIndex);
+        if [strategy[player] 
+      }
+    }
+    return null;
+  }
+  public String reportStrictlyDominated(int who) {
+    String s = "Strictly Dominated Strategies of player " + who + ":\n";
+    for (int theStrategy=0; theStrategy<numberOfActions[who]; theStrategy++) {
+      boolean dominated = true;
+      //System.out.println("\n\nTesting Strategy " + theStrategy);
+      for (int location=0; location<payoffs.length; location++) {
+        int[] indices = findIndices(location);
+        //System.out.println("Checking indices " + arrayToString(indices));
+        if (indices[who] == theStrategy) {
+          //System.out.println("Same as theStrategy");
+          for (int otherStrategy=0; otherStrategy<numberOfActions[who]; otherStrategy++) {
+            if (otherStrategy != theStrategy) {
+              int[] temp = copy(indices);
+              temp[who] = otherStrategy;
+              int tloc = findLocation(temp);
+              //System.out.println("Comparing " + arrayToString(temp) + " with payoff " + payoffs[tloc][who]);
+              if (payoffs[location][who] >= payoffs[tloc][who]) {
+                //System.out.println("Is Bigger or equal");
+                dominated = false;
+                break;
+              }
+            }
+          }
+          if (! dominated) {
+            break;
+          }
+        }
+      }
+      if (dominated) {
+        //System.out.println("****" + "Player " + who + "'s strategy number " + theStrategy + " is dominated");
+        s += "\tPlayer " + who + "'s strategy number " + theStrategy + " is strictly dominated.\n";
+      }
+    }
+    //System.out.println("######" + s + "########");
+    return s;
+  }
+
+  public String[] weaklyDominatedStrategies(String name) {
+    return null;
+  }
+
+  public String[] strictlyDominantStrategies(String name) {
+    return null;
+  }
+
+  public String[] weaklyDominantStrategies(String name) {
+    return null;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+  
+  public int getNameIndex(String name) {
+    for(int i=0; i<names.length; i++) {
+      if (names[i].equals(name)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  public int getActionIndex(int player, String action) {
+    for (int i=0
+  }
+  public String[] bestResponse(String name, String[] strategy) {
+    int player = -1;
+    for (int i=0; i<names.length; i++) {
+      if (names[i].equals(name)) {
+        player = i;
+        break;
+      }
+    }
+ 
+    int[] coords = strategyToCoordinates(strategy);
+    coords[player] = 0;
+    int[] workSpace = new int[labels[player].length];
+    int maxPay = payoffs[coordinates.to1Dim(coords)][player];
+    for (int j=1; j<labels[player].length; j++) {
+      coords[player] = j;
+      int tmpPay = payoffs[coordinates.to1Dim(coords)][player];
+      if (tmpPay > maxPay) {
+        maxPay = tmpPay;
+      }
+    }
+
+    int[] result = null;
+    for (int j=0; j<labels[player].length; j++) {
+      coords[player] = j;
+      if (payoffs[coordinates.to1Dim(coords)][player] == maxPay) {
+        result = T.aia(result, j);
+      }
+    }
+    
+    String[] answer = new String[result.length];
+    for (int i=0; i<answer.length; i++) {
+      answer[i] = labels[player][result[i]];
+    }
+    return answer;
+  }
+  
+  public int[] strategyToCoordinates(String[] strategy) {
+    int[] coords = new int[strategy.length];
+    for (int i=0; i<coords.length; i++) {
+      coords[i] = strategyToIndex(i, strategy[i]);
+    }
+    return coords;
+  }
+  
+  public int strategyToIndex(int player, String action) {
+    for (int i=0; i<labels[player].length; i++) {
+      if (labels[player][i].equals(action)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  
+  public int[] getPayoffs(String[] strategy) {
+    int[] coords = new int[strategy.length];
+    for (int i=0; i<strategy.length; i++) {
+      for (int j=0; j<labels[i].length; j++) {
+        if (labels[i][j].equals(strategy[i])) {
+          coords[i] = j;
+          break;
+        }
+      }
+    }
+    return payoffs[coordinates.to1Dim(coords)];
+  }
+  
+  public int getPayoff(String player, String[] strategy) {
+    for (int i=0; i<names.length; i++) {
+      if (names[i].equals(player)) {
+        return getPayoffs(strategy)[i];
+      }
+    }
+    return -1;
+  }
+  
+  public void print() {
     int tableSize = coordinates.getNumberOfDimensions();
+    T.prn("*** " + getTitle() + " ***");
     if (tableSize == 2) {
     } else if (tableSize == 3) {
       int[] strategy = new int[tableSize];
@@ -26,10 +199,10 @@ public class NormalForm {
         T.pr("\t\t" + names[2] + " '" + labels[2][i] + "'\t\t");
       }
       T.prn();
-      T.prn("\t\t\t" + names[0] + "\t\t\t\t\t" + names[0]);
-      T.prn("\t\t" + labels[0][0] + "\t\t" + labels[0][1] + "\t\t\t" + labels[0][0] + "\t\t" + labels[0][1]);
+      T.prn("\t\t\t" + names[1] + "\t\t\t\t\t" + names[1]);
+      T.prn("\t\t" + labels[1][0] + "\t\t" + labels[1][1] + "\t\t\t" + labels[1][0] + "\t\t" + labels[1][1]);
       
-      T.pr(names[1] + "\t " + labels[1][0]);
+      T.pr(names[0] + "\t " + labels[0][0]);
       strategy[2] = 0;
       for (int i=0; i<labels[0].length; i++) {
         strategy[0] = i;
@@ -59,21 +232,16 @@ public class NormalForm {
         T.pr("\t(" + T.ia2s(payoffs[coordinates.to1Dim(strategy)]) + ")");
       }
       T.prn();
-      
-      } else if (tableSize == 4) {
+    } else if (tableSize == 4) {
     } else {
     }
-  }
-  
-  public static void main(String[] args) {
-    NormalForm nf = GameVote.createNormalForm();
-    
-    nf.print("Vote");
   }
 }
 
 class GameVote {
   public static NormalForm createNormalForm() {
+    String title = "Voting Game";
+    
     String[][] labels = {
       {"Bob", "Vote A", "Vote B"},
       {"Mary", "Vote A", "Vote B"},
@@ -100,7 +268,7 @@ class GameVote {
       //T.prn(T.sa2s(actionNames[i]));
     }
     Coordinates1toN coordinates = new Coordinates1toN(actionCounts);
-    return new NormalForm(playerNames, actionNames, calculatePayoffs(coordinates), coordinates);
+    return new NormalForm(title, playerNames, actionNames, calculatePayoffs(coordinates), coordinates);
   }
   
   private static int[][] calculatePayoffs(Coordinates1toN coordinates){
@@ -142,9 +310,10 @@ class T {
     }
     return s;
   }
+
   public static String sa2s(String[] array) {
     String s = "";
-    if (array.length > 0) {
+    if (array != null && array.length > 0) {
       s += "" + array[0];
       for (int i=1; i<array.length; i++) {
         s += ", " + array[i];
@@ -152,6 +321,22 @@ class T {
     }
     return s;
   }
+  
+  public static int[] aia(int[] array, int value) {
+    int[] result;
+    if (array == null) {
+      result = new int[1];
+      result[0] = value;
+    } else {
+      result = new int[array.length+1];
+      for (int i=0; i<array.length; i++) {
+        result[i] = array[i];
+      }
+      result[array.length] = value;
+    }
+    return result;
+  }
+      
   public static void pr(String s) {
     System.out.print(s);
   }
@@ -161,6 +346,10 @@ class T {
   public static void prn(String s) {
     T.pr(s);
     T.prn();
+  }
+  public static void pr(int i, int space) {
+    String s = "          " + i;
+    T.prn(s.substring(s.length()-space));
   }
 }
 

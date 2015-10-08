@@ -1,0 +1,79 @@
+'A' is a character
+'\xnnnn' is a character where \x says what follows is a hexidecimal value
+'\bnnnn' is a character where \b says what follows is a binary value
+'\dnnnn' is a character where \d says what follows is a decimal value
+'\onnnn' is a character where \o syas what follows is an octal value
+\ is the escape character \t is tab (horizontal) \n is carriage return (followed by line feed) \l is linefeed and \v is a vertical tab
+1234 is an integer (infinite size)
+1234.1234 is a decimal accurate through all digits
+1234.1234E~ is a decimal accurate to +- .00005 (1234.12345 through 1234.12354)
+1234.1234E+.0001 is decimal accurate 1234.1233 to 1234.1235
+1234.1234E*1 is decimal accurate 1221.782166 to 1246.464634
+integer@integer/integer is a fraction
+\jinteger,integer or \jinteger,decimal or \jdecimal,decimal or \jdecimal,integer
+complex made of a number
+
+variable identifiers optional underscore followed by a letter followed by letters, digits, or underscore
+variables are undefined if they are used or defined without being given an initial value
+
+a tuple is () an empty tupple (k) a tuple with a single value or (g,b..) with a n-size equal to the number of commas + 1
+assert will assert a tupple where all elements are defined or constant
+query will return a tupple containing the results bound to any undefined variables in tupple used as argument to query
+  subsequent calls will continue search from last query
+  a null tupple () is returned if no such bindings exist
+
+a function is an identifier followed by a tuplecontaining the arguments the function uses uses
+the definition of a function (all calls are functions)
+defun identifier tupple pre/in/post pre is default
+
+collction types 
+sets {0 or more comma seperated items} ... sets contain no duplicates and are unordered (can be iterated but not guarenteed to get same order from multiple iterators)
+tupples (0 or more comma separated items) ... tupples may contain dupplicates and are ordered by position can be indexed and iterated with ordering preserved
+arrays [0 or more comma separated items] ... arrays may contain duplicates and can be ordered by items can be indexed and sorted iteration oreder prserved
+  arrays can have multiple dimensions table[][] for 2d example cube[][][] for three conspetually its column row depth etc.
+
+  logic and or not xor nand nor xnor imp nimp
+
+a not b and or xor nand nor xnor imp nimp
+0  1  0  0   0  0    1   1    1   1    0
+0  1  1  0   1  1    1   0    0   1    0
+1  0  0  0   1  1    1   0    0   0    1
+1  0  1  1   1  0    0   0    1   1    0
+
+aritmetic
+  plus minus times divides modulus
+  
+defclass identifier is identifier
+  instance vars
+  public functions
+  
+valid lines of example code
+
+defvar temple
+defvar balls as 15
+defvar names as "Tom Trible"
+defvar colours as {red, blue, green}
+
+equality
+equals(a, b) # they have same value
+sameas(a, b) # identical objects (they refer to same object)
+similar(a, b) # value is same and belong to same class
+
+all objects
+ have string representation (print knows what to do)
+ have a value (this includes undefined)
+
+Numbers
+  undefined, not a number, ifinite big and infinte small, immutable
+  can be added subtracted multiplied divided and modulus and remainder
+
+Strings
+  can be searched, printed, concated, and subsetted, and iterated, immutable
+  
+Arrays can be indexed sorted and iterated and mutable
+
+Tuples can be indexed and iterated immutable
+
+Sets can be iterated and add and remove and subsetted immutable
+
+isa this item has same behavior as named class

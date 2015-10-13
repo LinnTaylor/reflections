@@ -47,21 +47,6 @@ condition. In this case, output mX is 241 samples in length and has non-zero val
 and 8 (corresponding to the frequency values of 300 and 800 Hz, respectively). You can create a test 
 signal x by generating and adding two sinusoids of the given frequencies.
 """
-def DFT(x):
-    """
-    Input:
-        x (numpy array) = input sequence of length N
-    Output:
-        The function should return a numpy array of length N
-        X (numpy array) = The N point DFT of the input sequence x
-    """
-    ## Your code here
-    X = np.array([])
-    for k in range(x.size):
-        s = np.exp(1j * 2 * np.pi * k/x.size * np.arange(0, x.size))
-        X = np.append(X, sum(x * np.conjugate(s)))
-        
-    return X
     
 def minimizeEnergySpreadDFT(x, fs, f1, f2):
     """
@@ -78,8 +63,7 @@ def minimizeEnergySpreadDFT(x, fs, f1, f2):
     ## Your code here
     M = ((fs/f1)*(fs/f2))/gcd(fs/f1,fs/f2)
     
-    #X = 20*np.log10(abs(DFT(x[0:M])))
-    X = abs(DFT(x[0:M]))
+    X = 20*np.log10(abs(fft(x[0:M])))
     t = M/2 + 1
     mx = X[0:t]
     return mx.real

@@ -1,29 +1,60 @@
 import A3Part1
+import A3Part2
+import A3Part3
+import A3Part4
+import A3Part5
 from fractions import gcd
 import numpy as np
+import loadTestCases as ltc
 
-def getSignal(fs, f1, f2):
-    t = 1 # s (econds)
-    phi = 0 # r/s (econds)
-    
-    return np.cos(2*np.pi*f1*np.arange(0.0, t, 1.0/fs)+phi) + np.cos(2*np.pi*f2*np.arange(0.0, t, 1.0/fs)+phi)
+def compareAnswersDB(t, a):
+    for i in range(t.size):
+        if (t[i] > -120 and a[i] > -120 and abs(t[i]-a[i]) > 1.0e-06):
+            print("Error", i,abs(t[i]-a[i]))
+            return False
+    return True
 
-def announceNonZero(x):
-    for i in range(x.size):
-        if (x[i] > 1):
-            print("Bin ",i,"\n")
-            
-fs = 10000 # Hz
-f1 = 80 # Hz
-f2 = 200 # Hz
+def compareAnswers(t, a):
+    for i in range(t.size):
+        if (abs(t[i]-a[i])>1.0e-06):
+            print("Error", i,abs(t[i]-a[i]))
+            return False
+    return True
 
-mx = A3Part1.minimizeEnergySpreadDFT(getSignal(fs,f1,f2), fs, f1, f2)
-print("Part 1 Test a ",mx)
-announceNonZero(mx)
+#tc = ltc.load(1, 1) 
+#tc = ltc.load(1, 2) 
+#print("TestCase:",tc)
+#mx = A3Part1.minimizeEnergySpreadDFT(tc['input']['x'], tc['input']['fs'], tc['input']['f1'], tc['input']['f2'])
+#print(mx)
+#compareAnswersDB(tc['output'],mx)
 
-fs = 48000 # Hz
-f1 = 300 # Hz
-f2 = 800 # Hz
-mx = A3Part1.minimizeEnergySpreadDFT(getSignal(fs,f1,f2), fs, f1, f2)
-print("Part 1 Test b ",mx)
-announceNonZero(mx)
+tc = ltc.load(2, 1) 
+tc = ltc.load(2, 2) 
+print("TestCase:",tc)
+mx = A3Part2.optimalZeropad(tc['input']['x'], tc['input']['fs'], tc['input']['f'])
+print(mx)
+print("Compare",compareAnswersDB(tc['output'],mx))
+
+#tc = ltc.load(3, 1) 
+#tc = ltc.load(3, 2) 
+#print("TestCase:",tc)
+#(isRealEven, dftbuffer, X) = A3Part3.testRealEven(tc['input']['x'])
+#print("isRealEven:",isRealEven)
+#print("dftBuffer:",dftbuffer)
+#print("X",X)
+
+#tc = ltc.load(4, 1) 
+#tc = ltc.load(4, 2) 
+#print("TestCase:",tc)
+#(y, yfilt) = A3Part4.suppressFreqDFTmodel(tc['input']['x'], tc['input']['fs'], tc['input']['N'])
+#(ny, nyfilt) = tc['output']
+#print("Compare y", compareAnswers(ny, y))
+#print("Compare yfilt", compareAnswers(nyfilt, yfilt))
+
+#tc = ltc.load(5, 1) 
+#print("TestCase:",tc)
+#(mX1_80, mX2_80, mX3_80) = A3Part5.zpFFTsizeExpt(tc['input']['x'], tc['input']['fs'])
+#print("Expected",tc['output'])
+#print("MX1",mX1_80)
+#print("MX2",mX2_80)
+#print("MX3",mX3_80)

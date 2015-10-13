@@ -1,6 +1,6 @@
 ﻿from scipy.fftpack import fft
 import numpy as np
-
+import math
 """
 A3-Part-2: Optimal zero-padding
 
@@ -56,3 +56,12 @@ def optimalZeropad(x, fs, f):
                         x appropriately (zero-padding length to be computed). mX is (N/2)+1 samples long
     """
     ## Your code here
+    M = x.size
+    P = fs/f
+    bin = math.ceil((M+int(P)-1)/int(P))
+    zerosToAdd = ((bin*fs)-(f*M))/f
+    N = x.size+zerosToAdd
+    tx = np.zeros(N)
+    tx[0:x.size] = x[0:]
+    mx = abs(fft(tx))
+    return 20*np.log10(mx.real[0:N/2+1])

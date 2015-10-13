@@ -49,3 +49,11 @@ def testRealEven(x):
         X (numpy array, possibly complex) = The M point DFT of dftbuffer 
     """
     ## Your code here
+    mp = x.size/2
+    even = (x.imag==x[::-1].imag).all()
+    dftBuffer = np.zeros(x.size)
+    dftBuffer[:mp+1] = x[mp:]
+    dftBuffer[mp+1:] = x[:mp]
+    X = fft(dftBuffer)
+    real = (abs(X.imag-np.zeros(X.size))<1.0e-06).all()
+    return (bool(even and real), dftBuffer, X)

@@ -45,6 +45,7 @@ public class GamePrisonersDilemma {
       if (answer != null) {
         T.prn(names[i] + "'s weakly dominant strategies: (" + T.sa2s(answer) + ").");
       }
+      answer = nf.paretoDominant
     }
     T.prn();
   }
